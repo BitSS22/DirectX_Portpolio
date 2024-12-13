@@ -3,9 +3,20 @@
   <ItemGroup>
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="IContentsCore.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{358f9225-beee-4090-aaae-80f203247946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{06d2b31d-f646-4be1-a36f-2e6003fb4f5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

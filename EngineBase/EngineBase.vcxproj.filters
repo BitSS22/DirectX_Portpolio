@@ -5,10 +5,39 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="EngineDefine.h" />
     <ClInclude Include="EngineDebug.h" />
+    <ClInclude Include="EngineDirectory.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineFile.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePath.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSerializer.h">
+      <Filter>IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="EngineDebug.cpp" />
+    <ClCompile Include="EngineDirectory.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineFile.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePath.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSerializer.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="IO">
+      <UniqueIdentifier>{5027938e-ce03-4156-b97c-b45e452974d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
