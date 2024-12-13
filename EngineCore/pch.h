@@ -1,3 +1,6 @@
 #pragma once
 
-#include <EngineCore/pch.h>
+#include <EnginePlatform/pch.h>
+
+#pragma comment(lib, "EngineBase.lib")
+#pragma comment(lib, "EnginePlatform.lib")
