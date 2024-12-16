@@ -155,6 +155,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleGameMode.h" />
+    <ClInclude Include="TitleLogo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -166,6 +168,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp" />
+    <ClCompile Include="TitleLogo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

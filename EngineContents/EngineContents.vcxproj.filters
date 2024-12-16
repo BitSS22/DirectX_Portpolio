@@ -4,10 +4,30 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ContentsCore.h" />
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="ContentsCore.cpp" />
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameMode">
+      <UniqueIdentifier>{5bb5b50b-357d-4709-bf3f-80daa782ecc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{700a4d6b-35a8-4760-ba1e-066608d1a334}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

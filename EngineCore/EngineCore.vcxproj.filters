@@ -6,10 +6,46 @@
     <ClInclude Include="IContentsCore.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Level.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -17,6 +53,15 @@
     </Filter>
     <Filter Include="Interface">
       <UniqueIdentifier>{06d2b31d-f646-4be1-a36f-2e6003fb4f5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{ebffcfe7-e1d4-49ff-8ae8-3cd0183113ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{0e4694a5-9475-4d0d-83ca-cfa3d6ba3580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{5177b5bf-a2fb-40cf-800a-836a9ae02f91}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
