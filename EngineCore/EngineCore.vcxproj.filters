@@ -24,6 +24,10 @@
     <ClInclude Include="SceneComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGraphicDevice.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
@@ -46,6 +50,10 @@
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGraphicDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -62,6 +70,9 @@
     </Filter>
     <Filter Include="Object\Component">
       <UniqueIdentifier>{5177b5bf-a2fb-40cf-800a-836a9ae02f91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Contents">
+      <UniqueIdentifier>{3c49d093-545d-4a21-af42-33058105f04f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
