@@ -5,10 +5,6 @@
 ATitleGameMode::ATitleGameMode()
 {
 	GetWorld()->SpawnActor<ATitleLogo>();
-
-
-
-
 }
 
 ATitleGameMode::~ATitleGameMode()

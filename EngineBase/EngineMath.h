@@ -73,6 +73,7 @@ public:
 	static const FVector FORWARD;
 	static const FVector BACK;
 
+
 public:
 	union
 	{
