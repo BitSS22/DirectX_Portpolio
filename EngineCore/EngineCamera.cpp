@@ -4,6 +4,14 @@
 
 UEngineCamera::UEngineCamera()
 {
+
+}
+
+void UEngineCamera::BeginPlay()
+{
+	FVector Scale = UEngineCore::GetScreenScale();
+
+	ProjectionScale = Scale;
 }
 
 UEngineCamera::~UEngineCamera()
@@ -35,4 +43,15 @@ void UEngineCamera::ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URend
 {
 	Renderers[_PrevGroupOrder].remove(_Renderer);
 	Renderers[_Renderer->GetOrder()].push_back(_Renderer);
+}
+
+void UEngineCamera::CalculateViewAndProjection()
+{
+	FTransform& Trans = GetTransformRef();
+
+	Trans.View.View(Trans.World.ArrVector[3], Trans.World.GetFoward(), Trans.World.GetUp());
+
+	Trans.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
+
+	int a = 0;
 }
