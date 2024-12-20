@@ -1,11 +1,14 @@
-#include "pch.h"
+#include "PreCompile.h"
 #include "TitleLogo.h"
 #include <EngineCore/Renderer.h>
 
 ATitleLogo::ATitleLogo()
 {
 	// 랜더러를 만든다.
-	std::shared_ptr<URenderer> NewRenderer = CreateDefaultSubObject<URenderer>();
+	LogoRenderer = CreateDefaultSubObject<URenderer>();
+
+	SetActorRelativeScale3D({ 100.0f, 100.0f, 1.0f });
+
 }
 
 ATitleLogo::~ATitleLogo()

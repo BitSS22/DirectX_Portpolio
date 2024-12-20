@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="EngineCore.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="PreCompile.h" />
     <ClInclude Include="IContentsCore.h">
       <Filter>Interface</Filter>
     </ClInclude>
@@ -28,10 +28,12 @@
       <Filter>Object\Component\Contents</Filter>
     </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h" />
+    <ClInclude Include="EngineCamera.h" />
+    <ClInclude Include="CameraActor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
-    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="PreCompile.cpp" />
     <ClCompile Include="Level.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -54,6 +56,8 @@
       <Filter>Object\Component\Contents</Filter>
     </ClCompile>
     <ClCompile Include="EngineGraphicDevice.cpp" />
+    <ClCompile Include="EngineCamera.cpp" />
+    <ClCompile Include="CameraActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

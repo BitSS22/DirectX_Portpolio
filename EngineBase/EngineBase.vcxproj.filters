@@ -22,11 +22,11 @@
     <ClInclude Include="EngineDefine.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h" />
     <ClInclude Include="Object.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="EngineString.h" />
+    <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDirectory.cpp">
@@ -47,7 +47,7 @@
     <ClCompile Include="EngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="PreCompile.cpp" />
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>

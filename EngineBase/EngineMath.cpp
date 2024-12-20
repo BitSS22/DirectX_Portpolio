@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "PreCompile.h"
 #include "EngineMath.h"
 
 const double UEngineMath::DPI = 3.14159265358979323846264338327950288419716939937510;
@@ -245,4 +245,13 @@ FMatrix FMatrix::operator*(const FMatrix& _Matrix)
 
 	return Result;
 
+}
+
+void FTransform::TransformUpdate()
+{
+	ScaleMat.Scale(Scale);
+	RotationMat.RotationDeg(Rotation);
+	LocationMat.Position(Location);
+
+	World = ScaleMat * RotationMat * LocationMat;
 }
