@@ -158,6 +158,8 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h" />
+    <ClInclude Include="EngineResources.h" />
+    <ClInclude Include="EngineTexture.h" />
     <ClInclude Include="GameMode.h" />
     <ClInclude Include="IContentsCore.h" />
     <ClInclude Include="Level.h" />
@@ -165,6 +167,7 @@
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SceneComponent.h" />
+    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +180,8 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineGraphicDevice.cpp" />
+    <ClCompile Include="EngineResources.cpp" />
+    <ClCompile Include="EngineTexture.cpp" />
     <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Pawn.cpp" />
@@ -186,6 +191,7 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">

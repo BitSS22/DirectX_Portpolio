@@ -92,8 +92,11 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 		{
 			// 어딘가에서 이걸 호출하면 콘솔창이 뜨고 그 뒤로는 std::cout 하면 그 콘솔창에 메세지가 뜰겁니다.
 			// UEngineDebug::StartConsole();
+			// 먼저 디바이스 만들고
 			Device.CreateDeviceAndContext();
+			// 로드하고
 			Core->EngineStart(Data);
+			// 윈도우 조정할수 있다.
 			MainWindow.SetWindowPosAndScale(Data.WindowPos, Data.WindowSize);
 			Device.CreateBackBuffer(MainWindow);
 			// 디바이스가 만들어지지 않으면 리소스 로드도 할수가 없다.

@@ -33,12 +33,10 @@ private:
 	virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
 public:
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV = nullptr;
-
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
-
-	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr; // 로드한 텍스처
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr; // 샘플러 스테이트
+	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr; // 상수버퍼
 	void ShaderResInit();
 	void ShaderResSetting();
 
