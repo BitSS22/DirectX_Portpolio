@@ -51,7 +51,7 @@ void ULevel::Tick(float _DeltaTime)
 {
 	std::list<std::shared_ptr<class AActor>>::iterator StartIter = BeginPlayList.begin();
 	std::list<std::shared_ptr<class AActor>>::iterator EndIter = BeginPlayList.end();
-	for (; StartIter != EndIter; )
+	for ( ; StartIter != EndIter; )
 	{
 		std::shared_ptr<AActor> CurActor = *StartIter;
 

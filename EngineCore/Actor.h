@@ -54,7 +54,7 @@ public:
 		// 내가 그냥 ActorComponent
 		// 내가 그냥 SceneComponent
 
-
+		
 
 		if (std::is_base_of_v<USceneComponent, ComponentType>)
 		{

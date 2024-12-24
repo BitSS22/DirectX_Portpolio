@@ -643,7 +643,7 @@ public:
 
 	// 위치와 크기 양쪽영향을 주는 행렬이다.
 	// 그것조차도 내마음대로 정할수 있어.
-
+	
 	//                 1280          720        640           360            누가 앞에 나오고 누가 뒤에 나올거냐
 	void ViewPort(float _Width, float _Height, float _Left, float _Top, float _ZMin, float _ZMax)
 	{

@@ -32,7 +32,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 			return;
 		}
 		Dir.Append("Image");
-		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, {".PNG", ".BMP", ".JPG"});
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{
 			std::string FilePath = ImageFiles[i].GetPathToString();
@@ -43,7 +43,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::OpenLevel("Titlelevel");
-
+	
 }
 
 void UContentsCore::EngineTick(float _DeltaTime)

@@ -101,7 +101,7 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 			Device.CreateBackBuffer(MainWindow);
 			// 디바이스가 만들어지지 않으면 리소스 로드도 할수가 없다.
 			// 여기부터 리소스 로드가 가능하다.
-
+			
 
 		},
 		[]()
@@ -123,20 +123,20 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 
 	// Window 띄워줘야 한다.
 
-
+	
 }
 
 // 헤더 순환 참조를 막기 위한 함수분리
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view _Name)
 {
 	// 만들기만 하고 보관을 안하면 앤 그냥 지워집니다. <= 
-
+	
 	// 만들면 맵에 넣어서 레퍼런스 카운트를 증가시킵니다.
 	// UObject의 기능이었습니다.
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
 	Ptr->SetName(_Name);
 
-	LevelMap.insert({ _Name.data(), Ptr });
+	LevelMap.insert({ _Name.data(), Ptr});
 
 	std::cout << "NewLevelCreate" << std::endl;
 
@@ -150,7 +150,7 @@ void UEngineCore::OpenLevel(std::string_view _Name)
 		MSGASSERT("만들지 않은 레벨로 변경하려고 했습니다." + std::string(_Name));
 		return;
 	}
-
+	
 
 	NextLevel = LevelMap[_Name.data()];
 }

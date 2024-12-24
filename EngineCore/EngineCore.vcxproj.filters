@@ -12,17 +12,20 @@
     <ClInclude Include="Actor.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
     <ClInclude Include="GameMode.h">
       <Filter>Object\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
       <Filter>Object\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="ActorComponent.h">
-      <Filter>Object\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneComponent.h">
-      <Filter>Object\Component</Filter>
+    <ClInclude Include="EngineGraphicDevice.h">
+      <Filter>Graphic</Filter>
     </ClInclude>
     <ClInclude Include="EngineCamera.h">
       <Filter>Object\Render</Filter>
@@ -30,23 +33,20 @@
     <ClInclude Include="CameraActor.h">
       <Filter>Object\Render</Filter>
     </ClInclude>
-    <ClInclude Include="EngineGraphicDevice.h">
-      <Filter>Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
       <Filter>ThirdParty\DirectxTex\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineTexture.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineResources.h">
-      <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Object\Component\Render</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTexture.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineResources.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -58,32 +58,26 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameMode.cpp">
-      <Filter>Object\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Object\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
-    <ClCompile Include="CameraActor.cpp">
-      <Filter>Object\Render</Filter>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCamera.cpp">
-      <Filter>Object\Render</Filter>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Object\Actor</Filter>
     </ClCompile>
     <ClCompile Include="EngineGraphicDevice.cpp">
       <Filter>Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="EngineResources.cpp">
-      <Filter>Resources</Filter>
+    <ClCompile Include="EngineCamera.cpp">
+      <Filter>Object\Render</Filter>
     </ClCompile>
-    <ClCompile Include="EngineTexture.cpp">
-      <Filter>Resources</Filter>
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Object\Render</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Object\Component\Render</Filter>
@@ -91,52 +85,58 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Object\Component\Contents</Filter>
     </ClCompile>
+    <ClCompile Include="EngineTexture.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineResources.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{358f9225-beee-4090-aaae-80f203247946}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Interface">
-      <UniqueIdentifier>{06d2b31d-f646-4be1-a36f-2e6003fb4f5f}</UniqueIdentifier>
+      <UniqueIdentifier>{dbbc7d85-8a99-4d04-941c-12190193cbcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{7804f68d-5a6b-41af-b1db-5c8cc65d0713}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
-      <UniqueIdentifier>{ebffcfe7-e1d4-49ff-8ae8-3cd0183113ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Actor">
-      <UniqueIdentifier>{0e4694a5-9475-4d0d-83ca-cfa3d6ba3580}</UniqueIdentifier>
+      <UniqueIdentifier>{2f9cec39-ffc5-42e7-951f-4e4aa54ba953}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Component">
-      <UniqueIdentifier>{5177b5bf-a2fb-40cf-800a-836a9ae02f91}</UniqueIdentifier>
+      <UniqueIdentifier>{f035e895-31ab-4451-8f6a-d30bbf373292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{c0338f66-8d0f-4f97-9480-66043fb96908}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Component\Contents">
-      <UniqueIdentifier>{3c49d093-545d-4a21-af42-33058105f04f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Render">
-      <UniqueIdentifier>{d12516e5-affa-4bfc-a7f2-e1631460b74a}</UniqueIdentifier>
+      <UniqueIdentifier>{e1de5f16-b413-48ce-b221-15697df9fca2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Graphic">
-      <UniqueIdentifier>{d35b9abe-072b-47df-9dc4-8eb8593df61e}</UniqueIdentifier>
+      <UniqueIdentifier>{27490627-d4db-4c0e-a2da-2174f676fcfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Render">
+      <UniqueIdentifier>{af84143f-11d7-4986-8f8e-8fc5f9e2d1ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty">
-      <UniqueIdentifier>{cfbd2b9e-5d9e-4714-8690-52c6e940310e}</UniqueIdentifier>
+      <UniqueIdentifier>{e8bfa200-d0ff-4a17-a578-4a80296c2dde}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\DirectxTex">
-      <UniqueIdentifier>{ed825ba7-8d62-472c-8327-5df4055bfc7a}</UniqueIdentifier>
+      <UniqueIdentifier>{0c5bd5bf-498a-4dab-a201-ff16debaa548}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\DirectxTex\Debug">
-      <UniqueIdentifier>{bf5d9e5e-bf41-4dca-9df6-0c1ee8a25552}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\DirectxTex\Inc">
-      <UniqueIdentifier>{a7c42b79-858b-4866-bddf-da2b70cc55ff}</UniqueIdentifier>
+      <UniqueIdentifier>{55e0d781-660a-4e13-86ee-ba97cb353ee0}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\DirectxTex\Release">
-      <UniqueIdentifier>{e346e909-729c-4493-93cb-409d8d2454a6}</UniqueIdentifier>
+      <UniqueIdentifier>{f72ab297-5ee5-4741-b71b-64586fdb61f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{58eeff30-e897-445d-bd55-58bf1400af30}</UniqueIdentifier>
+    <Filter Include="ThirdParty\DirectxTex\Inc">
+      <UniqueIdentifier>{d1bd3c2b-8961-4c00-8bcb-40a1bbf7ca96}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Component\Render">
-      <UniqueIdentifier>{a76c06f1-b575-4f6c-9715-bca045b0bb14}</UniqueIdentifier>
+      <UniqueIdentifier>{aa5a291e-74e1-4e3c-92c0-50f7993217ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{ebec57cc-b8c0-4c24-acd2-77ceefe6e653}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -145,8 +145,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">
+    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
       <Filter>ThirdParty\DirectxTex\Debug</Filter>
-    </CopyFileToFolders>
+    </Library>
+    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
+      <Filter>ThirdParty\DirectxTex\Release</Filter>
+    </Library>
   </ItemGroup>
 </Project>

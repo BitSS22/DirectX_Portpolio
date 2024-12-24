@@ -1,8 +1,8 @@
 struct EngineVertex
 {
-    float4 POSITION : POSITION;
-    float4 UV : TEXCOORD;
-    float4 COLOR : COLOR;
+	float4 POSITION : POSITION;
+	float4 UV : TEXCOORD;
+	float4 COLOR : COLOR;
 };
 
 // 버텍스 쉐이더는 무조건 리턴값이 있어야 합니다.
@@ -11,25 +11,32 @@ struct EngineVertex
 
 struct VertexShaderOutPut
 {
-    float4 SVPOSITION : SV_POSITION; // 뷰포트행렬이 곱해지는 포지션입니다.
-    float4 UV : TEXCOORD; // 
-    float4 COLOR : COLOR;
+	float4 SVPOSITION : SV_POSITION; // 뷰포트행렬이 곱해지는 포지션입니다.
+	float4 UV : TEXCOORD; // 
+	float4 COLOR : COLOR;
 };
 
 // 상수버퍼를 사용하겠다.
 cbuffer FTransform : register(b0)
 {
-    float4 Scale;
-    float4 Rotation;
-    float4 Location;
+	float4 Scale;
+	float4 Rotation;
+	float4 Location;
 
-    float4x4 ScaleMat;
-    float4x4 RotationMat;
-    float4x4 LocationMat;
-    float4x4 World;
-    float4x4 View;
-    float4x4 Projection;
-    float4x4 WVP;
+	float4x4 ScaleMat;
+	float4x4 RotationMat;
+	float4x4 LocationMat;
+	float4x4 World;
+	float4x4 View;
+	float4x4 Projection;
+	float4x4 WVP;
+};
+
+// 상수버퍼는 아무것도 세팅해주지 않으면 기본값이 0으로 채워집니다.
+cbuffer FSpriteData : register(b1)
+{
+	float4 CuttingPos;
+	float4 CuttingSize;
 };
 
 // 버텍스쉐이더를 다 만들었다.
@@ -41,13 +48,23 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 	
 	// float4x4 WVP;
 	
-    VertexShaderOutPut OutPut;
+	VertexShaderOutPut OutPut;
 	// _Vertex 0.5, 0.5
-    OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
-    OutPut.UV = _Vertex.UV;
-	//OutPut.SVPOSITION *= Projection;
-    OutPut.COLOR = _Vertex.COLOR;
-    return OutPut;
+	OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
+	
+	// 00 10 => 0.3 0.3  0.7 0.3
+	// 01 11 => 0.3 0.7  0.7 0.7
+	
+	// CuttingPos 0.3 0.3
+	// CuttingSize 0.4 0.4 
+	
+	OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
+	OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
+	
+	
+	
+	OutPut.COLOR = _Vertex.COLOR;
+	return OutPut;
 }
 
 // 텍스처 1장과 
@@ -60,6 +77,6 @@ float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	
 	// ImageTexture.Load({0,0));
-    float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
-    return Color;
+	float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+	return Color;
 }

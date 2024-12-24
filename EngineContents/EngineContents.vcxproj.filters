@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PreCompile.h" />
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode</Filter>
@@ -9,7 +10,6 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
@@ -24,10 +24,10 @@
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
-      <UniqueIdentifier>{5bb5b50b-357d-4709-bf3f-80daa782ecc7}</UniqueIdentifier>
+      <UniqueIdentifier>{b30b3464-9fea-42bc-a269-6d65ecf4f6c0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Title">
-      <UniqueIdentifier>{700a4d6b-35a8-4760-ba1e-066608d1a334}</UniqueIdentifier>
+      <UniqueIdentifier>{b8c8ade7-800f-4020-890f-43e613f26276}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

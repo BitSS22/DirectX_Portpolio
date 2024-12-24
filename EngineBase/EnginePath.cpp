@@ -84,7 +84,7 @@ bool UEnginePath::Move(std::string_view _Path)
 
 	if (false == IsExists())
 	{
-		MSGASSERT("존재하지 않는 경로로 이동하려고 했습니다.");
+		MSGASSERT("존재하지 않는 경로로 이동하려고 했습니다."); 
 		return false;
 	}
 
