@@ -48,6 +48,39 @@
     <ClInclude Include="EngineResources.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="EngineSprite.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx11.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGUIWindow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
@@ -90,6 +123,33 @@
     </ClCompile>
     <ClCompile Include="EngineResources.cpp">
       <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSprite.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx11.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGUIWindow.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +197,18 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{ebec57cc-b8c0-4c24-acd2-77ceefe6e653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{79ac1fd3-2f94-4836-b190-cf3498acfe7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI">
+      <UniqueIdentifier>{1d62a489-38dd-4c37-97de-ba3d82f9c718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI\Header">
+      <UniqueIdentifier>{31bae5f0-0761-47ef-a8ef-3c333e450b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI\Cpp">
+      <UniqueIdentifier>{f962fe96-8076-4d29-bdff-bd07125781ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

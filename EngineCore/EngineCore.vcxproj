@@ -200,6 +200,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx11.h" />
+    <ClInclude Include="imgui_impl_win32.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
     <ClInclude Include="Level.h">
       <SubType>
       </SubType>
@@ -227,6 +235,18 @@
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h" />
     <ClInclude Include="EngineTexture.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineSprite.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineGUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineGUIWindow.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -261,6 +281,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="Level.cpp">
       <SubType>
       </SubType>
@@ -292,6 +318,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineTexture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineSprite.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineGUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineGUIWindow.cpp">
       <SubType>
       </SubType>
     </ClCompile>
