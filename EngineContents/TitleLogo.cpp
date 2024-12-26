@@ -6,7 +6,7 @@ ATitleLogo::ATitleLogo()
 {
 	// 랜더러를 만든다.
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	LogoRenderer->SetSprite("Player_Test.png");
+	LogoRenderer->SetSprite("Player.png", 0);
 
 
 	SetActorRelativeScale3D({600.0f, 600.0f, 1.0f });
@@ -26,5 +26,5 @@ void ATitleLogo::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	// AddActorLocation(FVector{ 0.001f, 0.0f, 0.0f});
+	// AddActorLocation(FVector{ 100.0f * _DeltaTime, 0.0f, 0.0f});
 }
