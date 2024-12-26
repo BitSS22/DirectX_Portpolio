@@ -29,6 +29,9 @@
     <ClCompile Include="EngineTimer.cpp">
       <Filter>Time</Filter>
     </ClCompile>
+    <ClCompile Include="EngineDelegate.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
@@ -62,6 +65,9 @@
     <ClInclude Include="EngineTimer.h">
       <Filter>Time</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDelegate.h">
+      <Filter>Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -84,6 +90,9 @@
     </Filter>
     <Filter Include="Time">
       <UniqueIdentifier>{28a8b23a-84cf-4106-8fff-97fe459618c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{07f06592-46a4-4b2b-885f-8ccc8d63c04c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
