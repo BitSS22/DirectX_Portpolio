@@ -183,6 +183,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="DefaultSceneComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineCamera.h">
       <SubType>
       </SubType>
@@ -196,6 +200,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineResources.h" />
+    <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -208,6 +213,7 @@
     <ClInclude Include="imstb_rectpack.h" />
     <ClInclude Include="imstb_textedit.h" />
     <ClInclude Include="imstb_truetype.h" />
+    <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Level.h">
       <SubType>
       </SubType>
@@ -222,6 +228,10 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="Renderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RenderUnit.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -250,6 +260,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp">
@@ -261,6 +279,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="CameraActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DefaultSceneComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -276,6 +298,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice_Resources.cpp" />
     <ClCompile Include="EngineResources.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
@@ -287,6 +310,7 @@
     <ClCompile Include="imgui_impl_win32.cpp" />
     <ClCompile Include="imgui_tables.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Level.cpp">
       <SubType>
       </SubType>
@@ -306,6 +330,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RenderUnit.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -333,13 +361,33 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib" />
-    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib" />
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
