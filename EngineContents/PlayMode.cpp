@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "PlayMode.h"
-#include "TitleLogo.h"
+#include "Center.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
