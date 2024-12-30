@@ -176,10 +176,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MyRenderer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -196,10 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MyRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
