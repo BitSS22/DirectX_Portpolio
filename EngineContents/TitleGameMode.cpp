@@ -24,7 +24,6 @@ ATitleGameMode::ATitleGameMode()
 	{
 		Logo = GetWorld()->SpawnActor<ATitleLogo>();
 		// Logo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
-		Logo->GetRenderer()->SetSpriteData(4);
 	}
 
 	// 카메라를 일정거리 뒤로 가서 

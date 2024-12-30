@@ -14,14 +14,14 @@ ATitleLogo::ATitleLogo()
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	// LogoRenderer->SetSprite("Player.png", 0);
 
-	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 0, 0.1f);
+	LogoRenderer->CreateAnimation("Idle", "Tevi", 0, 3, 0.2f);
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
 		Animation->IsAutoScale = true;
 		Animation->AutoScaleRatio = 4.0f;
 	}
 
-	LogoRenderer->CreateAnimation("Move", "Player.png", 1, 4, 0.3f);
+	LogoRenderer->CreateAnimation("Move", "Tevi", 4, 16, 0.3f);
 
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Move");

@@ -16,26 +16,9 @@ URenderer::~URenderer()
 
 }
 
-void URenderer::SetSprite(UEngineSprite* _Sprite)
+void URenderer::SetTexture(UEngineTexture* _Texture)
 {
-	Sprite = _Sprite;
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
-	}
-}
-
-void URenderer::SetSprite(std::string_view _Value)
-{
-	std::string UpperName = UEngineString::ToUpper(_Value);
-
-	Sprite = UEngineSprite::Find<UEngineSprite>(UpperName).get();
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
-	}
+	Texture = _Texture;
 }
 
 void URenderer::SetOrder(int _Order)
@@ -158,7 +141,7 @@ void URenderer::ShaderResSetting()
 
 	
 
-	ID3D11ShaderResourceView* ArrSRV[16] = { Sprite->GetSRV() };
+	ID3D11ShaderResourceView* ArrSRV[16] = { Texture->GetSRV() };
 	UEngineCore::GetDevice().GetContext()->PSSetShaderResources(0, 1, ArrSRV);
 
 	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
@@ -504,9 +487,9 @@ void URenderer::OutPutMergeSetting()
 	UEngineCore::GetDevice().GetContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
 }
 
-void URenderer::SetSpriteData(size_t _Index)
+void URenderer::SetSpriteData(UEngineSprite* _Sprite, size_t _Index)
 {
-	SpriteData = Sprite->GetSpriteData(_Index);
+	SpriteData = _Sprite->GetSpriteData(_Index);
 }
 
 void URenderer::SetMesh(std::string_view _Name)
