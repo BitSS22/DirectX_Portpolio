@@ -1,11 +1,19 @@
 #include "PreCompile.h"
 #include "Player.h"
 
-Player::Player()
+APlayer::APlayer()
 {
 }
 
-Player::~Player()
+APlayer::~APlayer()
+{
+}
+
+void APlayer::BeginPlay()
+{
+}
+
+void APlayer::Tick(float _DeltaTime)
 {
 }
 

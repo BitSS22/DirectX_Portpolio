@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "TitleGameMode.h"
+#include "PlayMode.h"
 #include "TitleLogo.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -19,29 +19,29 @@ public:
 	}
 };
 
-ATitleGameMode::ATitleGameMode()
+APlayMode::APlayMode()
 {
-	{
-		Logo = GetWorld()->SpawnActor<ATitleLogo>();
-		// Logo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
-	}
+	Center = GetWorld()->SpawnActor<ACenter>();
+	// Center->SetActorLocation({ 300.0f, 0.0f, 0.0f });
 
-	// 카메라를 일정거리 뒤로 가서 
-	// 카메라 위치조정을 무조건 해줘야 할것이다.
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({0.0f, 0.0f, -1000.0f, 1.0f});
+	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 
 	UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");
 }
 
-ATitleGameMode::~ATitleGameMode()
+APlayMode::~APlayMode()
 {
 
 }
 
-void ATitleGameMode::Tick(float _DeltaTime)
+void APlayMode::BeginPlay()
 {
-	// 부모 호출
+	AActor::BeginPlay();
+}
+
+void APlayMode::Tick(float _DeltaTime)
+{
 	AActor::Tick(_DeltaTime);
 
 
