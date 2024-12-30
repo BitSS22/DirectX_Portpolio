@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <memory>
+#include "PolygonRenderer.h"
 
 // Ό³Έν :
 class ACenter : public AActor
@@ -21,6 +23,7 @@ public:
 
 private:
 	inline static ACenter* Center = nullptr;
+	std::shared_ptr<UPolygonRenderer> Polygon = nullptr;
 
 public:
 	static ACenter* GetCenter()

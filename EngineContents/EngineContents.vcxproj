@@ -180,8 +180,9 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PolygonRenderer.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="PlayMode.h">
+    <ClInclude Include="PlayLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -189,6 +190,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -199,6 +201,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PolygonRenderer.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PreCompile.h</PrecompiledHeaderFile>
@@ -209,7 +212,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="PlayMode.cpp">
+    <ClCompile Include="PlayLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -217,6 +220,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

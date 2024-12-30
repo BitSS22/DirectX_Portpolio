@@ -1,35 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="ContentsCore.h" />
-    <ClInclude Include="TitleGameMode.h">
-      <Filter>GameMode</Filter>
+    <ClInclude Include="Center.h">
+      <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Object\Player</Filter>
     </ClInclude>
-    <ClInclude Include="MyRenderer.h" />
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PolygonRenderer.h" />
+    <ClInclude Include="Vertex.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="ContentsCore.cpp" />
-    <ClCompile Include="TitleGameMode.cpp">
-      <Filter>GameMode</Filter>
+    <ClCompile Include="Center.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object\Player</Filter>
     </ClCompile>
-    <ClCompile Include="MyRenderer.cpp" />
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PolygonRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="GameMode">
+    <Filter Include="Level">
       <UniqueIdentifier>{b30b3464-9fea-42bc-a269-6d65ecf4f6c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Title">
-      <UniqueIdentifier>{b8c8ade7-800f-4020-890f-43e613f26276}</UniqueIdentifier>
+    <Filter Include="Object">
+      <UniqueIdentifier>{3388ec43-af47-4550-991a-290ef9c3eff0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Player">
+      <UniqueIdentifier>{db41e4c1-83a2-4e8e-962d-47b0d26825c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{707ef0e2-cd75-4743-b6b5-4bbb6e7a0bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{c271d4cd-130d-4a0f-98f8-f9e4f0df2683}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

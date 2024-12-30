@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "PlayMode.h"
+#include "PlayLevel.h"
 #include "Center.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -19,7 +19,7 @@ public:
 	}
 };
 
-APlayMode::APlayMode()
+APlayLevel::APlayLevel()
 {
 	Center = GetWorld()->SpawnActor<ACenter>();
 	// Center->SetActorLocation({ 300.0f, 0.0f, 0.0f });
@@ -30,17 +30,17 @@ APlayMode::APlayMode()
 	UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");
 }
 
-APlayMode::~APlayMode()
+APlayLevel::~APlayLevel()
 {
 
 }
 
-void APlayMode::BeginPlay()
+void APlayLevel::BeginPlay()
 {
 	AActor::BeginPlay();
 }
 
-void APlayMode::Tick(float _DeltaTime)
+void APlayLevel::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 

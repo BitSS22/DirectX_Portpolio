@@ -16,12 +16,12 @@ public:
 	UIndexBuffer& operator=(UIndexBuffer&& _Other) noexcept = delete;
 
 	template<typename IndexType>
-	static std::shared_ptr<UIndexBuffer> Create(std::string_view _Name, const std::vector<IndexType>& _Data)
+	ENGINEAPI static std::shared_ptr<UIndexBuffer> Create(std::string_view _Name, const std::vector<IndexType>& _Data)
 	{
 		return Create(_Name, reinterpret_cast<const void*>(&_Data[0]), sizeof(IndexType), _Data.size());
 	}
 
-	static std::shared_ptr<UIndexBuffer> Create(std::string_view _Name, const void* _InitData, size_t _VertexSize, size_t _VertexCount);
+	ENGINEAPI static std::shared_ptr<UIndexBuffer> Create(std::string_view _Name, const void* _InitData, size_t _VertexSize, size_t _VertexCount);
 
 	void Setting();
 

@@ -16,12 +16,12 @@ public:
 	UVertexBuffer& operator=(UVertexBuffer&& _Other) noexcept = delete;
 
 	template<typename VertexType>
-	static std::shared_ptr<UVertexBuffer> Create(std::string_view _Name, const std::vector<VertexType>& _VertexData)
+	ENGINEAPI static std::shared_ptr<UVertexBuffer> Create(std::string_view _Name, const std::vector<VertexType>& _VertexData)
 	{
 		return Create(_Name, reinterpret_cast<const void*>(& _VertexData[0]), sizeof(VertexType), _VertexData.size());
 	}
 
-	static std::shared_ptr<UVertexBuffer> Create(std::string_view _Name, const void* _InitData, size_t _VertexSize, size_t _VertexCount);
+	ENGINEAPI static std::shared_ptr<UVertexBuffer> Create(std::string_view _Name, const void* _InitData, size_t _VertexSize, size_t _VertexCount);
 
 	void Setting();
 

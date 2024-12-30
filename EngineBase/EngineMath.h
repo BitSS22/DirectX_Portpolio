@@ -816,7 +816,7 @@ struct FTransform
 	float4x4 Projection;
 	float4x4 WVP;
 
-	FTransform()
+	ENGINEAPI FTransform()
 		: Scale({ 1.0f, 1.0f, 1.0f, 1.0f })
 	{
 
