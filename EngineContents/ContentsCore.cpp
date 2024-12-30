@@ -43,9 +43,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
-
-	// UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
-
+	// 주인공 APawn 상속 받으세요.
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::OpenLevel("Titlelevel");
 	
