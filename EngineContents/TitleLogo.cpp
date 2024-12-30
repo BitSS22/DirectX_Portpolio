@@ -12,13 +12,13 @@ ATitleLogo::ATitleLogo()
 
 	// 랜더러를 만든다.
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	// LogoRenderer->SetSprite("Player.png", 0);
+	LogoRenderer->SetSprite("Player.png");
 
-	LogoRenderer->CreateAnimation("Idle", "Tevi", 0, 3, 0.2f);
+	LogoRenderer->CreateAnimation("Idle", "Tevi", 0, 3, 0.5f);
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 4.0f;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	LogoRenderer->CreateAnimation("Move", "Tevi", 4, 16, 0.3f);
@@ -26,7 +26,7 @@ ATitleLogo::ATitleLogo()
 	{
 		USpriteRenderer::FrameAnimation* Animation = LogoRenderer->FindAnimation("Move");
 		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 4.0f;
+		Animation->AutoScaleRatio = 1.0f;
 	}
 
 	LogoRenderer->ChangeAnimation("Idle");
