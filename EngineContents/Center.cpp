@@ -3,7 +3,6 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/DefaultSceneComponent.h>
-#include "MyRenderer.h"
 
 ACenter::ACenter()
 {

@@ -18,6 +18,9 @@ UContentsCore::~UContentsCore()
 
 void UContentsCore::EngineStart(UEngineInitData& _Data)
 {
+	_Data.WindowPos = FVector(0.f, 0.f);
+	_Data.WindowSize = FVector(640.f, 480.f);
+
 	UEngineCore::CreateLevel<APlayMode, APawn>("PlayLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 }
