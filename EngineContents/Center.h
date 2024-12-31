@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 #include <memory>
 #include "PolygonRenderer.h"
+#include <EngineCore/SpriteRenderer.h>
 
 // Ό³Έν :
 class ACenter : public AActor
@@ -23,7 +24,7 @@ public:
 
 private:
 	inline static ACenter* Center = nullptr;
-	std::shared_ptr<UPolygonRenderer> Polygon = nullptr;
+	std::shared_ptr<USpriteRenderer> Polygon = nullptr;
 
 public:
 	static ACenter* GetCenter()

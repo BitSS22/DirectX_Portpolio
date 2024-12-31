@@ -8,6 +8,7 @@
 #include "Vertex.h"
 #include "EngineCore/VertexBuffer.h"
 #include "EngineCore/IndexBuffer.h"
+#include <EngineCore/EngineVertex.h>
 
 CreateContentsCoreDefine(UContentsCore);
 
@@ -31,11 +32,11 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowSize = WindowSize;
 
 
-	std::vector<PolygonVertex> VectexBuffer = {};
+	std::vector<EngineVertex> VectexBuffer = {};
 	VectexBuffer.reserve(6);
 
 	for (int i = 0; i < 6; ++i)
-		VectexBuffer.push_back(PolygonVertex(FVector::AngleToVectorRad(360.f / (i + 1) * i), FVector(1.0f, 0.0f, 0.0f, 1.0f)));
+		VectexBuffer.push_back(EngineVertex(FVector::AngleToVectorRad(360.f / (i + 1) * i),FVector(0.0f, 1.0f), FVector(1.0f, 0.0f, 0.0f, 1.0f)));
 
 	UVertexBuffer::Create("Polygon", VectexBuffer);
 

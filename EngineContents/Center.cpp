@@ -3,6 +3,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include "PolygonRenderer.h"
+#include <EngineCore/SpriteRenderer.h>
 
 ACenter::ACenter()
 {
@@ -19,9 +20,10 @@ ACenter::~ACenter()
 void ACenter::BeginPlay()
 {
 	AActor::BeginPlay();
-
-	Polygon = CreateDefaultSubObject<UPolygonRenderer>();
+	
+	Polygon = CreateDefaultSubObject<USpriteRenderer>();
 	Polygon->SetMesh("Polygon");
+	Polygon->SetBlend("AlphaBlend");
 	SetActorRelativeScale3D(FVector(100.f, 100.f, 1.f));
 }
 

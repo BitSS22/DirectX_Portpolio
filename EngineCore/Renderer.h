@@ -32,7 +32,7 @@ public:
 
 protected:
 	ENGINEAPI void BeginPlay() override;
-	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
+	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
 
 private:
 

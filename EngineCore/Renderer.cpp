@@ -13,7 +13,6 @@ URenderer::URenderer()
 
 URenderer::~URenderer()
 {
-
 }
 
 void URenderer::SetTexture(UEngineTexture* _Texture)

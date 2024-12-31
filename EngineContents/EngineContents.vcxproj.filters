@@ -16,7 +16,7 @@
     </ClInclude>
     <ClInclude Include="PolygonRenderer.h" />
     <ClInclude Include="Vertex.h">
-      <Filter>Shader</Filter>
+      <Filter>Object\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,13 +48,13 @@
     <Filter Include="Core">
       <UniqueIdentifier>{707ef0e2-cd75-4743-b6b5-4bbb6e7a0bba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
+    <Filter Include="Object\Shader">
       <UniqueIdentifier>{c271d4cd-130d-4a0f-98f8-f9e4f0df2683}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader.fx">
-      <Filter>Shader</Filter>
+      <Filter>Object\Shader</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
