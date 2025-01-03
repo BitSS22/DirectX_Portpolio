@@ -1,14 +1,11 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
-#include <EngineCore/Level.h>
-#include <EngineCore/EngineTexture.h>
-#include <EngineCore/EngineSprite.h>
-#include "PlayLevel.h"
-#include <EngineCore/Mesh.h>
-#include "Vertex.h"
-#include "EngineCore/VertexBuffer.h"
-#include "EngineCore/IndexBuffer.h"
+#include <EngineCore/EngineCore.h>
+#include "PlayMode.h"
 #include <EngineCore/EngineVertex.h>
+#include <EngineCore/EngineVertexBuffer.h>
+#include <EngineCore/EngineVertexShader.h>
+
 
 CreateContentsCoreDefine(UContentsCore);
 
@@ -31,32 +28,11 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = FVector((width - WindowSize.X) / 2.f, (height - WindowSize.Y) / 2.f);
 	_Data.WindowSize = WindowSize;
 
-
-	std::vector<EngineVertex> VectexBuffer = {};
-	VectexBuffer.reserve(6);
-
-	for (int i = 0; i < 6; ++i)
-		VectexBuffer.push_back(EngineVertex(FVector::AngleToVectorRad(360.f / (i + 1) * i),FVector(0.0f, 1.0f), FVector(1.0f, 0.0f, 0.0f, 1.0f)));
-
-	UVertexBuffer::Create("Polygon", VectexBuffer);
+	// CreateMesh
+	
 
 
-	std::vector<unsigned int> Indexs = {};
-	Indexs.reserve(6);
-
-	Indexs.push_back(0);
-	Indexs.push_back(1);
-	Indexs.push_back(2);
-
-	Indexs.push_back(2);
-	Indexs.push_back(3);
-	Indexs.push_back(1);
-
-	UIndexBuffer::Create("Polygon", Indexs);
-
-	UMesh::Create("Polygon");
-
-	UEngineCore::CreateLevel<APlayLevel, APawn>("PlayLevel");
+	UEngineCore::CreateLevel<APlayMode, APawn>("PlayLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 }
 

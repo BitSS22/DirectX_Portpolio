@@ -8,15 +8,17 @@
     <ClInclude Include="Player.h">
       <Filter>Object\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayLevel.h">
+    <ClInclude Include="PlayMode.h">
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="PolygonRenderer.h" />
     <ClInclude Include="Vertex.h">
-      <Filter>Object\Shader</Filter>
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="PolygonRenderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -27,13 +29,18 @@
     <ClCompile Include="Player.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
+    <ClCompile Include="PlayMode.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="ContentsCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="PolygonRenderer.cpp" />
+    <ClCompile Include="PolygonRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Vectex.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -48,13 +55,16 @@
     <Filter Include="Core">
       <UniqueIdentifier>{707ef0e2-cd75-4743-b6b5-4bbb6e7a0bba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Shader">
+    <Filter Include="Shader">
       <UniqueIdentifier>{c271d4cd-130d-4a0f-98f8-f9e4f0df2683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{578ad18b-f52b-44ae-a192-a848449a1d80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader.fx">
-      <Filter>Object\Shader</Filter>
+      <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

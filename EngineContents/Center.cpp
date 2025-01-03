@@ -20,11 +20,6 @@ ACenter::~ACenter()
 void ACenter::BeginPlay()
 {
 	AActor::BeginPlay();
-	
-	Polygon = CreateDefaultSubObject<USpriteRenderer>();
-	Polygon->SetMesh("Polygon");
-	Polygon->SetBlend("AlphaBlend");
-	SetActorRelativeScale3D(FVector(100.f, 100.f, 1.f));
 }
 
 void ACenter::Tick(float _DeltaTime)
