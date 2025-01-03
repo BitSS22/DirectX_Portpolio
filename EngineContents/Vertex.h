@@ -5,6 +5,7 @@
 struct PolygonVertex
 {
 	static UEngineInputLayOutInfo Info;
+
 	float4 POSITION;
 	float4 COLOR;
 };
