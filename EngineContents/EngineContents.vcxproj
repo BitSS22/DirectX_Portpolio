@@ -220,7 +220,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Vectex.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader.fx">

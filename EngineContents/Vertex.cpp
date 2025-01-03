@@ -9,7 +9,6 @@ public:
 	VertexInit()
 	{
 		PolygonVertex::Info.AddInputLayout("POSITION", DXGI_FORMAT_R32G32B32A32_FLOAT);
-		PolygonVertex::Info.AddInputLayout("COLOR", DXGI_FORMAT_R32G32B32A32_FLOAT);
 	}
 };
 

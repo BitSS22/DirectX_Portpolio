@@ -2,9 +2,9 @@
 #include "ContentsCore.h"
 #include <EngineCore/EngineCore.h>
 #include "PlayMode.h"
-#include <EngineCore/EngineVertex.h>
+#include "Vertex.h"
 #include <EngineCore/EngineVertexBuffer.h>
-#include <EngineCore/EngineVertexShader.h>
+#include <EngineCore/Mesh.h>
 
 
 CreateContentsCoreDefine(UContentsCore);
@@ -28,8 +28,82 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = FVector((width - WindowSize.X) / 2.f, (height - WindowSize.Y) / 2.f);
 	_Data.WindowSize = WindowSize;
 
-	// CreateMesh
-	
+	// Create VertexBuffer
+	const int VertexCount = 8;
+	std::vector<PolygonVertex> Vertexes = {};
+	Vertexes.reserve(VertexCount);
+
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, -0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, -0.5f, 1.0f)));
+
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, 0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, 0.5f, 1.0f)));
+
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, 0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, 0.5f, 1.0f)));
+
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, -0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, -0.5f, 1.0f)));
+
+	UEngineVertexBuffer::Create("Polygon", Vertexes);
+
+	// Create IndexBuffer
+	const int IndexCount = 36;
+	std::vector<unsigned int> Indexes = {};
+	Indexes.reserve(IndexCount);
+
+	Indexes.push_back(0);
+	Indexes.push_back(1);
+	Indexes.push_back(2);
+
+	Indexes.push_back(2);
+	Indexes.push_back(1);
+	Indexes.push_back(3);
+
+	Indexes.push_back(2);
+	Indexes.push_back(3);
+	Indexes.push_back(4);
+
+	Indexes.push_back(4);
+	Indexes.push_back(3);
+	Indexes.push_back(5);
+
+	Indexes.push_back(4);
+	Indexes.push_back(5);
+	Indexes.push_back(6);
+
+	Indexes.push_back(6);
+	Indexes.push_back(5);
+	Indexes.push_back(7);
+
+	Indexes.push_back(6);
+	Indexes.push_back(7);
+	Indexes.push_back(0);
+
+	Indexes.push_back(0);
+	Indexes.push_back(7);
+	Indexes.push_back(1);
+
+	Indexes.push_back(0);
+	Indexes.push_back(2);
+	Indexes.push_back(6);
+
+	Indexes.push_back(6);
+	Indexes.push_back(2);
+	Indexes.push_back(4);
+
+	Indexes.push_back(3);
+	Indexes.push_back(1);
+	Indexes.push_back(5);
+
+	Indexes.push_back(5);
+	Indexes.push_back(1);
+	Indexes.push_back(7);
+
+	UEngineIndexBuffer::Create("Polygon", Indexes);
+
+	// Create Mesh
+	UMesh::Create("Polygon");
 
 
 	UEngineCore::CreateLevel<APlayMode, APawn>("PlayLevel");

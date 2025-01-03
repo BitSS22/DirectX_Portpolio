@@ -4,8 +4,16 @@
 
 struct PolygonVertex
 {
+public:
 	static UEngineInputLayOutInfo Info;
 
 	float4 POSITION;
-	float4 COLOR;
+};
+
+struct Color
+{
+public:
+	float4 ColorFirst;
+	float4 ColorSecond;
+	float4 ColorThird;
 };

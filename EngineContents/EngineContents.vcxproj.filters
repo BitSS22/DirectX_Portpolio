@@ -38,7 +38,7 @@
     <ClCompile Include="PolygonRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Vectex.cpp">
+    <ClCompile Include="Vertex.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
   </ItemGroup>
