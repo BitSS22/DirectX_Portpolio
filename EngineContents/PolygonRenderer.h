@@ -1,6 +1,14 @@
 #pragma once
 #include <EngineCore/Renderer.h>
 
+struct Color
+{
+public:
+	float4 ColorFirst;
+	float4 ColorSecond;
+	float4 ColorThird;
+};
+
 class UPolygonRenderer : public URenderer
 {
 public:
@@ -13,6 +21,7 @@ public:
 	UPolygonRenderer& operator=(UPolygonRenderer&& _Other) noexcept = delete;
 
 private:
+	Color mColor = {};
 
 public:
 

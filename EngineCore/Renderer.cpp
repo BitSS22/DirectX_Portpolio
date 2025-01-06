@@ -32,7 +32,7 @@ void URenderer::SetOrder(int _Order)
 }
 
 
-ENGINEAPI void URenderer::BeginPlay()
+void URenderer::BeginPlay()
 {
 	USceneComponent::BeginPlay();
 	SetOrder(GetOrder());

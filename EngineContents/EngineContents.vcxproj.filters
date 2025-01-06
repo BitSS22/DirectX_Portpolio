@@ -62,9 +62,4 @@
       <UniqueIdentifier>{578ad18b-f52b-44ae-a192-a848449a1d80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shader.fx">
-      <Filter>Shader</Filter>
-    </FxCompile>
-  </ItemGroup>
 </Project>

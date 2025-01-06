@@ -5,6 +5,7 @@
 #include "Vertex.h"
 #include <EngineCore/EngineVertexBuffer.h>
 #include <EngineCore/Mesh.h>
+#include <EngineCore/EngineMaterial.h>
 
 
 CreateContentsCoreDefine(UContentsCore);
@@ -33,17 +34,17 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	std::vector<PolygonVertex> Vertexes = {};
 	Vertexes.reserve(VertexCount);
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, -0.5f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, -0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, 0.5f, 1.0f), float4(1.0f, 0.0f, 0.0f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, 0.5f, 1.0f), float4(0.0f, 1.0f, 0.0f, 1.0f)));
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, 0.5f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, 0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, -0.5f, 1.0f), float4(0.0f, 0.0f, 1.0f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, -0.5f, 1.0f), float4(1.0f, 1.0f, 0.0f, 1.0f)));
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, 0.5f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, 0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, -0.5f, 1.0f), float4(1.0f, 0.0f, 1.0f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, -0.5f, 1.0f), float4(0.0f, 1.0f, 1.0f, 1.0f)));
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, -0.5f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, -0.5f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, 0.5f, 1.0f), float4(1.0f, 1.0f, 1.0f, 1.0f)));
+	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, 0.5f, 1.0f), float4(0.0f, 0.0f, 0.0f, 1.0f)));
 
 	UEngineVertexBuffer::Create("Polygon", Vertexes);
 
@@ -105,6 +106,12 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	// Create Mesh
 	UMesh::Create("Polygon");
 
+	
+
+	// Create Meterial
+	std::shared_ptr<UEngineMaterial>Material = UEngineMaterial::Create("Polygon");
+	Material->SetPixelShader("Shader.fx");
+	Material->SetVertexShader("Shader.fx");
 
 	UEngineCore::CreateLevel<APlayMode, APawn>("PlayLevel");
 	UEngineCore::OpenLevel("PlayLevel");

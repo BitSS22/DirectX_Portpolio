@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "PlayMode.h"
 #include "Center.h"
+#include <EngineCore/EngineCamera.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
@@ -25,6 +26,7 @@ APlayMode::APlayMode()
 	// Center->SetActorLocation({ 300.0f, 0.0f, 0.0f });
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+	Camera->GetCameraComponent()->SetProjectionType(EProjectionType::Perspective);
 	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 
 	UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");

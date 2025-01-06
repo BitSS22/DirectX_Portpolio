@@ -1,11 +1,13 @@
 struct PolygonVertex
 {
     float4 POSITION : POSITION;
+    float4 COLOR : COLOR;
 };
 
-struct VertexShaderOutPut
+struct PolygonShaderOutPut
 {
     float4 SVPOSITION : SV_POSITION;
+    float4 COLOR : COLOR;
 };
 
 cbuffer FTransform : register(b0)
@@ -37,23 +39,24 @@ cbuffer FTransform : register(b0)
     float4x4 WVP;
 };
 
-cbuffer Color : register(b0)
+cbuffer Color : register(b1)
 {
     float4 ColorFirst;
     float4 ColorSecond;
     float4 ColorThird;
 };
 
-VertexShaderOutPut VertexToWorld_VS(PolygonVertex _Vertex)
+PolygonShaderOutPut VertexToWorld_VS(PolygonVertex _Vertex)
 {
-    VertexShaderOutPut OutPut;
+    PolygonShaderOutPut OutPut;
 	
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
+    OutPut.COLOR = _Vertex.COLOR;
     
     return OutPut;
 }
 
-float4 Pixel_PS(VertexShaderOutPut _Vertex) : SV_Target0
+float4 Pixel_PS(PolygonShaderOutPut _Vertex) : SV_Target0
 {
-    return ColorFirst;
+    return _Vertex.COLOR;
 };
