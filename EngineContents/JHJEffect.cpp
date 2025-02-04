@@ -35,5 +35,6 @@ void UJHJEffect::Effect(UEngineCamera* _Camera, float _DeltaTime)
 	// 리절트 타겟이 랜더링 대상이 되었다.
 	RenderUnit.SetTexture("ImageTexture", CopyTarget->GetTexture());
 	RenderUnit.Render(_Camera, _DeltaTime);
+	RenderUnit.Reset();
 
 }

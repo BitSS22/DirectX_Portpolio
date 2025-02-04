@@ -68,6 +68,45 @@ std::wstring UEngineString::AnsiToUnicode(std::string_view _Name)
 	return Result;
 }
 
+std::wstring UEngineString::UTF8ToUniCode(const std::string& _UTF8)
+{
+	std::wstring UniCode;
+
+	int32_t Len = MultiByteToWideChar(
+		CP_UTF8,
+		0,
+		_UTF8.c_str(),
+		static_cast<int32_t>(_UTF8.size()),
+		nullptr, // 이부분을 nullptr로 넣어주면 변환 함수로 동작하는게 아니고. 변환길이를 체크하는 함수로 동작한다.
+		0
+	);
+
+	if (0 >= Len)
+	{
+		MSGASSERT("변환에 실패했습니다.");
+		return L"";
+	}
+
+	UniCode.resize(Len);
+
+	Len = MultiByteToWideChar(
+		CP_UTF8,
+		0,
+		_UTF8.c_str(),
+		static_cast<int32_t>(_UTF8.size()),
+		&UniCode[0],
+		Len
+	);
+
+	if (0 >= Len)
+	{
+		MSGASSERT("변환에 실패했습니다.");
+		return L"";
+	}
+
+	return UniCode;
+}
+
 std::string UEngineString::AnsiToUTF8(std::string_view _Name)
 {
 	std::wstring WStr = AnsiToUnicode(_Name);

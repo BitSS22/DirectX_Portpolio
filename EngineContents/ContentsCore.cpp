@@ -50,7 +50,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ATestGameMode, APawn, AHUD>("LoadingLevel");
 
 	// UEngineCore::OpenLevel("LightLevel");
-	UEngineCore::OpenLevel("LightLevel");
+	UEngineCore::OpenLevel("LoadingLevel");
 
 	UEngineGUI::AllWindowOff();
 

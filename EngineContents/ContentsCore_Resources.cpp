@@ -10,6 +10,7 @@
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/EngineSprite.h>
 #include <EnginePlatform/EngineSound.h>
+#include <EngineCore/EngineFont.h>
 
 #include <EnginePlatform/EngineThread.h>
 
@@ -92,21 +93,37 @@ void UContentsCore::MyGSetting()
 	}
 
 
-
-	UEngineDirectory Dir;
-	if (false == Dir.MoveParentToDirectory("ContentsResources"))
 	{
-		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-		return;
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("ContentsResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Sound");
+		// 로딩바 만들고 싶으면  100개면 10 10 10 10 10 10
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".wav", ".mp3" });
+
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineSound::Load(FilePath);
+		}
 	}
-	Dir.Append("Sound");
-	// 로딩바 만들고 싶으면  100개면 10 10 10 10 10 10
-	std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".wav", ".mp3" });
 
-	for (size_t i = 0; i < ImageFiles.size(); i++)
 	{
-		std::string FilePath = ImageFiles[i].GetPathToString();
-		UEngineSound::Load(FilePath);
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("ContentsResources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Font");
+
+		UEngineFile FontFiles = Dir.GetFile("PFStardust.ttf");
+		
+		UEngineFont::Load("PFStardust", FontFiles.GetPathToString());
+		// UEngineFont::Load("PFStardust", "SB 어그로 Bold");
 	}
 
 }

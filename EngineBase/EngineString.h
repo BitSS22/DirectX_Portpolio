@@ -25,6 +25,8 @@ public:
 
 	ENGINEAPI static std::string AnsiToUTF8(std::string_view _Name);
 
+	ENGINEAPI static std::wstring UTF8ToUniCode(const std::string& _UTF8);
+
 private:
 	UEngineString();
 };

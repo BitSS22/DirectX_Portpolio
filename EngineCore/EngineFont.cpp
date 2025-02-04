@@ -56,7 +56,10 @@ std::shared_ptr<UEngineFont> UEngineFont::Load(std::string_view _Name, std::stri
 
 void UEngineFont::ResLoad(std::string_view _Path)
 {
-	std::wstring WPath = UEngineString::AnsiToUnicode(_Path);
+	// std::wstring WPath = UEngineString::AnsiToUnicode(_Path);
+
+	std::string UTFPath = UEngineString::AnsiToUTF8(_Path);
+	std::wstring WPath = UEngineString::UTF8ToUniCode(UTFPath);
 
 	D3D11_BLEND_DESC blendDesc = { 0, };
 	for (int i = 0; i < 4; ++i)
@@ -73,7 +76,9 @@ void UEngineFont::ResLoad(std::string_view _Path)
 
 	
 
-	if (FontFactory->CreateFontWrapper(UEngineCore::GetDevice().GetDevice(), WPath.c_str(), blendDesc, &Font))
+	HRESULT Result = FontFactory->CreateFontWrapper(UEngineCore::GetDevice().GetDevice(), WPath.c_str(), blendDesc, &Font);
+
+	if (S_OK != Result)
 	{
 		MSGASSERT("폰트 생성 실패");
 		return;
