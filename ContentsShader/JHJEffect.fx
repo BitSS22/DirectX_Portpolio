@@ -23,37 +23,8 @@ cbuffer MyData : register(b9)
 VertexShaderOutPut JHJEffect_VS(FEngineVertex _Vertex)
 {
 	VertexShaderOutPut OutPut;
-	OutPut.UV = _Vertex.UV ;
 	OutPut.SVPOSITION = _Vertex.POSITION;
-	
-	OutPut.UV.x -= 0.5f;
-	OutPut.UV.y -= 0.5f;
-	
-	// -1.5 -1.5 1.5 -1.5
-	// -1.5 1.5  1.5 1.5
-	
-	float ATime = AccTime * AccTime;
-	
-	if (0.0f > OutPut.UV.x)
-	{
-		OutPut.UV.x -= ATime + 1.0f;
-	}
-	
-	if (0.5f < OutPut.UV.x)
-	{
-		OutPut.UV.x += ATime + 1.0f;
-	}
-	
-	if (0.0f > OutPut.UV.y)
-	{
-		OutPut.UV.y -= ATime + 1.0f;
-	}
-	
-	if (0.5f < OutPut.UV.y)
-	{
-		OutPut.UV.y += ATime + 1.0f;
-	}
-	
+	OutPut.UV = _Vertex.UV ;
 	
 	return OutPut;
 }
@@ -65,30 +36,30 @@ SamplerState ImageSampler : register(s1);
 // 이미지를 샘플링해서 이미지를 보이게 만들고
 float4 JHJEffect_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
-	// _Vertex.SVPOSITION;
-	// 00  
-	//         1280 720
+    float2 PixelOffset = { 1.f / 1280.f, 1.f / 720.f };
+    float4 PixelColor = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    float4 Color = PixelColor;
 	
-	if (_Vertex.UV.x < 0)
-	{
-		return float4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
+    if (PixelColor.a != 1.f)
+    {
+        for (int y = -2; y <= 2; ++y)
+        {
+            for (int x = -2; x <= 2; ++x)
+            {
+                float4 xyColor = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy + float2(PixelOffset.x * x, PixelOffset.y * y));
+                
+                if (xyColor.a >= 0.9f)
+                {
+                    Color = float4(1.f, 0.f, 0.f, 1.f);
+                    break;
+                }
+            }
+        }
+    }
+	else
+    {
+        Color = PixelColor;
+    }
 	
-	if (_Vertex.UV.y < 0)
-	{
-		return float4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	
-	if (_Vertex.UV.x > 1.0f)
-	{
-		return float4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	
-	if (_Vertex.UV.y > 1.0f)
-	{
-		return float4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	
-	float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
-	return Color;
+    return Color;
 };
