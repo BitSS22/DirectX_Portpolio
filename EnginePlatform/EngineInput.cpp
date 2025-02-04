@@ -153,6 +153,8 @@ UEngineInput::UEngineInput()
 	Keys.insert({ VK_RIGHT , UEngineKey(VK_RIGHT) });
 	Keys.insert({ VK_UP , UEngineKey(VK_UP) });
 	Keys.insert({ VK_DOWN , UEngineKey(VK_DOWN) });
+	Keys.insert({ VK_LSHIFT , UEngineKey(VK_LSHIFT) });
+	
 
 	Keys.insert({ VK_LEFT, UEngineKey(VK_LEFT) });
 	Keys.insert({ VK_RIGHT, UEngineKey(VK_RIGHT) });
@@ -226,6 +228,18 @@ void UEngineInput::EventCheck(float _DeltaTime)
 		// 명시적이기 잖고 디버깅이 힘들어서 별로 좋아하지 않게 되었다.
 		UEngineKey& CurKey = StartIter->second;
 		CurKey.EventCheck();
+	}
+}
+
+void UEngineInput::KeyReset()
+{
+	std::map<int, UEngineKey>::iterator StartIter = GetInst().Keys.begin();
+	std::map<int, UEngineKey>::iterator EndIter = GetInst().Keys.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		UEngineKey& CurKey = StartIter->second;
+		CurKey.Reset();
 	}
 }
 

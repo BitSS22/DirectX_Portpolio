@@ -3,6 +3,7 @@
 #include <EngineBase/Object.h>
 #include "EngineTexture.h"
 #include "EngineSampler.h"
+#include "EngineStructuredBuffer.h"
 
 class UEngineShaderRes 
 {
@@ -29,16 +30,50 @@ public:
 
 		Res->Setting(ShaderType, BindIndex);
 	}
+
+	void Reset()
+	{
+
+	}
+};
+
+class UEngineStructuredBufferRes : public UEngineShaderRes
+{
+public:
+	void* Data = nullptr; // 자신에게 세팅될 데이터는 스스로 가지고 있을 것이다.
+	UINT DataSize;
+	UINT DataCount; // 카운트로 알아내야 합니다.
+	UEngineStructuredBuffer* Res;
+
+	void Setting()
+	{
+		if (nullptr != Data)
+		{
+			Name;
+			Res->ChangeData(Data, DataSize * DataCount);
+		}
+
+		Res->Setting(ShaderType, BindIndex);
+	}
+
+	void Reset()
+	{
+
+	}
 };
 
 class UEngineTextureRes : public UEngineShaderRes
 {
 public:
-	std::shared_ptr<UEngineTexture> Res;
+	UEngineTexture* Res;
 
 	void Setting()
 	{
 		Res->Setting(ShaderType, BindIndex);
+	}
+	void Reset()
+	{
+		Res->Reset(ShaderType, BindIndex);
 	}
 };
 
@@ -52,6 +87,10 @@ public:
 		Res->Setting(ShaderType, BindIndex);
 	}
 
+	void Reset()
+	{
+		Res->Setting(ShaderType, BindIndex);
+	}
 };
 
 // Render가 2개 만들었다.
@@ -89,6 +128,8 @@ public:
 
 	void CreateConstantBufferRes(std::string_view _Name, UEngineConstantBufferRes Res);
 
+	void CreateStructuredBufferRes(std::string_view _Name, UEngineStructuredBufferRes Res);
+
 	template<typename DataType>
 	void ConstantBufferLinkData(std::string_view _Name, DataType& Data)
 	{
@@ -97,13 +138,27 @@ public:
 
 	void ConstantBufferLinkData(std::string_view _Name, void* Data);
 
+	template<typename DataType>
+	void StructuredBufferLinkData(std::string_view _Name, std::vector<DataType>& Data)
+	{
+		StructuredBufferLinkData(_Name, static_cast<UINT>(Data.size()), reinterpret_cast<void*>(&Data[0]));
+	}
+
+	void StructuredBufferLinkData(std::string_view _Name, UINT _Count, void* Data);
+
 	void SamplerSetting(std::string_view _Name, std::string_view _ResName);
 	void TextureSetting(std::string_view _Name, std::string_view _ResName);
+	void TextureSetting(std::string_view _Name, std::shared_ptr<UEngineTexture> _Texture);
+
+	void TextureSetting(std::string_view _Name, UEngineTexture* _Texture);
 
 	bool IsSampler(std::string_view _Name);
 	bool IsTexture(std::string_view _Name);
 	bool IsConstantBuffer(std::string_view _Name);
+	bool IsStructuredBuffer(std::string_view _Name);
 	void Setting();
+
+	void Reset();
 
 protected:
 
@@ -111,7 +166,7 @@ private:
 	std::map<std::string, UEngineConstantBufferRes> ConstantBufferRes;
 	std::map<std::string, UEngineTextureRes> TextureRes;
 	std::map<std::string, UEngineSamplerRes> SamplerRes;
-	// std::map<std::string, UEngineConstantBufferRes> ConstantBufferSetters;
+	std::map<std::string, UEngineStructuredBufferRes> StructuredBufferRes;
 
 };
 

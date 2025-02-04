@@ -1,13 +1,23 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
-#include <EngineCore/EngineCore.h>
-#include "PlayMode.h"
-#include "Vertex.h"
-#include <EngineCore/EngineVertexBuffer.h>
-#include <EngineCore/Mesh.h>
+#include <EnginePlatform/EngineInput.h>
+#include <EngineCore/Level.h>
+#include <EngineCore/EngineTexture.h>
+#include <EngineCore/EngineSprite.h>
+#include <EngineCore/EngineShader.h>
 #include <EngineCore/EngineMaterial.h>
+#include "TitleGameMode.h"
+#include "TileMapGameMode.h"
+#include "LightGameMode.h"
+#include <EngineCore/HUD.h>
+#include <EngineCore/EngineGUI.h>
+#include <EngineCore/EngineGUIWindow.h>
+#include "TitleHUD.h"
+#include "TestGameMode.h"
+#include "ContentsEditorGUI.h"
+#include "MyGameInstance.h"
 
-
+// #define은 그냥 무조건 복붙
 CreateContentsCoreDefine(UContentsCore);
 
 UContentsCore::UContentsCore()
@@ -21,100 +31,32 @@ UContentsCore::~UContentsCore()
 
 void UContentsCore::EngineStart(UEngineInitData& _Data)
 {
-	FVector WindowSize = { 768.f, 480.f };
+	// mainwindow는 아무나 건들면 안된다.
+	// 넌 컨텐츠잖아 엔진이 관리하는 윈도우라는게 존재하는지도 몰라야한다.
 
-	int width = GetSystemMetrics(SM_CXSCREEN);
-	int height = GetSystemMetrics(SM_CYSCREEN);
+	GEngine->CreateGameInstance<MyGameInstance>();
 
-	_Data.WindowPos = FVector((width - WindowSize.X) / 2.f, (height - WindowSize.Y) / 2.f);
-	_Data.WindowSize = WindowSize;
+	_Data.WindowPos = { 100, 100 };
+	_Data.WindowSize = { 1280, 720 };
 
-	// Create VertexBuffer
-	const int VertexCount = 8;
-	std::vector<PolygonVertex> Vertexes = {};
-	Vertexes.reserve(VertexCount);
+	MyGSetting();
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, 0.5f, 1.0f), float4(1.0f, 0.0f, 0.0f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, 0.5f, 1.0f), float4(0.0f, 1.0f, 0.0f, 1.0f)));
+	// new int();
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, 0.5f, -0.5f, 1.0f), float4(0.0f, 0.0f, 1.0f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, 0.5f, -0.5f, 1.0f), float4(1.0f, 1.0f, 0.0f, 1.0f)));
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, -0.5f, 1.0f), float4(1.0f, 0.0f, 1.0f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, -0.5f, 1.0f), float4(0.0f, 1.0f, 1.0f, 1.0f)));
 
-	Vertexes.push_back(PolygonVertex(float4(-0.5f, -0.5f, 0.5f, 1.0f), float4(1.0f, 1.0f, 1.0f, 1.0f)));
-	Vertexes.push_back(PolygonVertex(float4(0.5f, -0.5f, 0.5f, 1.0f), float4(0.0f, 0.0f, 0.0f, 1.0f)));
+	UEngineCore::CreateLevel<ALightGameMode, APawn, AHUD>("LightLevel");
 
-	UEngineVertexBuffer::Create("Polygon", Vertexes);
+	UEngineCore::CreateLevel<ATestGameMode, APawn, AHUD>("LoadingLevel");
 
-	// Create IndexBuffer
-	const int IndexCount = 36;
-	std::vector<unsigned int> Indexes = {};
-	Indexes.reserve(IndexCount);
+	// UEngineCore::OpenLevel("LightLevel");
+	UEngineCore::OpenLevel("LightLevel");
 
-	Indexes.push_back(0);
-	Indexes.push_back(1);
-	Indexes.push_back(2);
+	UEngineGUI::AllWindowOff();
 
-	Indexes.push_back(2);
-	Indexes.push_back(1);
-	Indexes.push_back(3);
-
-	Indexes.push_back(2);
-	Indexes.push_back(3);
-	Indexes.push_back(4);
-
-	Indexes.push_back(4);
-	Indexes.push_back(3);
-	Indexes.push_back(5);
-
-	Indexes.push_back(4);
-	Indexes.push_back(5);
-	Indexes.push_back(6);
-
-	Indexes.push_back(6);
-	Indexes.push_back(5);
-	Indexes.push_back(7);
-
-	Indexes.push_back(6);
-	Indexes.push_back(7);
-	Indexes.push_back(0);
-
-	Indexes.push_back(0);
-	Indexes.push_back(7);
-	Indexes.push_back(1);
-
-	Indexes.push_back(0);
-	Indexes.push_back(2);
-	Indexes.push_back(6);
-
-	Indexes.push_back(6);
-	Indexes.push_back(2);
-	Indexes.push_back(4);
-
-	Indexes.push_back(3);
-	Indexes.push_back(1);
-	Indexes.push_back(5);
-
-	Indexes.push_back(5);
-	Indexes.push_back(1);
-	Indexes.push_back(7);
-
-	UEngineIndexBuffer::Create("Polygon", Indexes);
-
-	// Create Mesh
-	UMesh::Create("Polygon");
-
-	
-
-	// Create Meterial
-	std::shared_ptr<UEngineMaterial>Material = UEngineMaterial::Create("Polygon");
-	Material->SetPixelShader("Shader.fx");
-	Material->SetVertexShader("Shader.fx");
-
-	UEngineCore::CreateLevel<APlayMode, APawn>("PlayLevel");
-	UEngineCore::OpenLevel("PlayLevel");
+	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	Window->SetActive(true);
 }
 
 void UContentsCore::EngineTick(float _DeltaTime)
@@ -123,4 +65,5 @@ void UContentsCore::EngineTick(float _DeltaTime)
 
 void UContentsCore::EngineEnd()
 {
+
 }

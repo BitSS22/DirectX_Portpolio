@@ -1,65 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="Center.h">
-      <Filter>Object</Filter>
+    <ClInclude Include="ContentsCore.h" />
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Object\Player</Filter>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="PlayMode.h">
-      <Filter>Level</Filter>
+    <ClInclude Include="Monster.h">
+      <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsCore.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="TileMapGameMode.h">
+      <Filter>GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Shader</Filter>
+    <ClInclude Include="ContentsEditorGUI.h">
+      <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="PolygonRenderer.h">
-      <Filter>Renderer</Filter>
+    <ClInclude Include="Monster2.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="GMConst.h" />
+    <ClInclude Include="AMon.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleHUD.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGameInstance.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="GMStruct.h" />
+    <ClInclude Include="LightGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCustomRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshActor.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="JHJEffect.h">
+      <Filter>PostEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="Center.cpp">
-      <Filter>Object</Filter>
+    <ClCompile Include="ContentsCore.cpp" />
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Object\Player</Filter>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="PlayMode.cpp">
-      <Filter>Level</Filter>
+    <ClCompile Include="ContentsCore_Resources.cpp" />
+    <ClCompile Include="MyCustomRenderer.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsCore.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="PolygonRenderer.cpp">
-      <Filter>Renderer</Filter>
+    <ClCompile Include="TileMapGameMode.cpp">
+      <Filter>GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>Shader</Filter>
+    <ClCompile Include="ContentsEditorGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster2.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="AMon.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleHUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGameInstance.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="GMStruct.cpp" />
+    <ClCompile Include="LightGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshActor.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="JHJEffect.cpp">
+      <Filter>PostEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Level">
+    <Filter Include="GameMode">
       <UniqueIdentifier>{b30b3464-9fea-42bc-a269-6d65ecf4f6c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{3388ec43-af47-4550-991a-290ef9c3eff0}</UniqueIdentifier>
+    <Filter Include="Title">
+      <UniqueIdentifier>{b8c8ade7-800f-4020-890f-43e613f26276}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Player">
-      <UniqueIdentifier>{db41e4c1-83a2-4e8e-962d-47b0d26825c8}</UniqueIdentifier>
+    <Filter Include="Render">
+      <UniqueIdentifier>{00b22cb0-38ad-4f90-9885-863b07f1e2f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{707ef0e2-cd75-4743-b6b5-4bbb6e7a0bba}</UniqueIdentifier>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{15aa3c0d-7b41-4e15-93c0-0228acabc02d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{c271d4cd-130d-4a0f-98f8-f9e4f0df2683}</UniqueIdentifier>
+    <Filter Include="HUD">
+      <UniqueIdentifier>{2fc0cad0-7fd5-46fe-876b-90d7d52a5dc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer">
-      <UniqueIdentifier>{578ad18b-f52b-44ae-a192-a848449a1d80}</UniqueIdentifier>
+    <Filter Include="Global">
+      <UniqueIdentifier>{ec0e23b6-b236-42b8-adc5-11167fa40406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostEffect">
+      <UniqueIdentifier>{556df8c9-baa2-4fca-8b8b-e9fdadb910b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

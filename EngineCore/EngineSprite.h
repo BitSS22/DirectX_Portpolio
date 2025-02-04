@@ -3,13 +3,7 @@
 #include <EngineBase/EngineMath.h>
 #include <EngineBase/EngineDirectory.h>
 #include "EngineResources.h"
-
-struct FSpriteData 
-{
-	float4 CuttingPos = { 0.0f, 0.0f };
-	float4 CuttingSize = { 1.0f, 1.0f };
-	float4 Pivot = { 0.5f, 0.5f };
-};
+#include "EngineDataStruct.h"
 
 // Ό³Έν :
 class UEngineSprite : public UEngineResources
@@ -37,6 +31,8 @@ public:
 
 	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToMeta(std::string_view _Name, std::string_view _DataFileExt);
 
+	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToCount(std::string_view _Name, int X, int Y, FVector _Pivot = FVector{0.5f, 0.5f});
+
 	ENGINEAPI UEngineTexture* GetTexture(size_t _Index = 0);
 
 	ENGINEAPI ID3D11ShaderResourceView* GetSRV(size_t _Index = 0);
@@ -53,6 +49,12 @@ public:
 
 	ENGINEAPI FVector GetSpriteScaleToReal(size_t _Index);
 
+	ENGINEAPI size_t GetSpriteCount()
+	{
+		return SpriteTexture.size();
+	}
+
+	
 
 protected:
 

@@ -15,6 +15,25 @@ UEngineTexture::~UEngineTexture()
 {
 }
 
+
+std::shared_ptr<UEngineTexture> UEngineTexture::ThreadSafeLoad(std::string_view _Name, std::string_view _Path)
+{
+	std::string UpperName = ToUpperName(_Name);
+
+	if (true == Contains(UpperName))
+	{
+		MSGASSERT("이미 로드한 텍스처를 도 로드하려고 했습니다." + UpperName);
+		return nullptr;
+	}
+
+	std::shared_ptr<UEngineTexture> NewRes = std::make_shared<UEngineTexture>();
+	ThreadSafePushRes<UEngineTexture>(NewRes, _Name, _Path);
+	NewRes->ResLoad();
+
+	return NewRes;
+}
+
+
 std::shared_ptr<UEngineTexture> UEngineTexture::Load(std::string_view _Name, std::string_view _Path)
 {
 	std::string UpperName = ToUpperName(_Name);
@@ -44,6 +63,7 @@ void UEngineTexture::ResLoad()
 
 	if (UpperExt == ".DDS")
 	{
+		// LoadFromDDSFile 함수는 쓰레드에 safe 할까?
 		if (S_OK != DirectX::LoadFromDDSFile(wLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
 		{
 			MSGASSERT("DDS 파일 로드에 실패했습니다.");
@@ -67,6 +87,8 @@ void UEngineTexture::ResLoad()
 		}
 	}
 
+	// UEngineCore::GetDevice().GetDevice() 이녀석도 데이터 영역입니다.
+
 	if (S_OK != DirectX::CreateShaderResourceView(
 		UEngineCore::GetDevice().GetDevice(),
 		ImageData.GetImages(),
@@ -81,6 +103,28 @@ void UEngineTexture::ResLoad()
 
 	Size.X = static_cast<float>(Metadata.width);
 	Size.Y = static_cast<float>(Metadata.height);
+}
+
+void UEngineTexture::Reset(EShaderType _Type, UINT _BindIndex)
+{
+	ID3D11ShaderResourceView* ArrPtr[1] = { nullptr };
+
+	switch (_Type)
+	{
+	case EShaderType::VS:
+		UEngineCore::GetDevice().GetContext()->VSSetShaderResources(_BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::PS:
+		UEngineCore::GetDevice().GetContext()->PSSetShaderResources(_BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::HS:
+	case EShaderType::DS:
+	case EShaderType::GS:
+	case EShaderType::CS:
+	default:
+		MSGASSERT("아직 존재하지 않는 쉐이더에 세팅하려고 했습니다.");
+		break;
+	}
 }
 
 void UEngineTexture::Setting(EShaderType _Type, UINT _BindIndex)
@@ -118,14 +162,56 @@ void UEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value)
 		return;
 	}
 
+	if (Desc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+	{
+		CreateShaderResourceView();
+	}
+
+	if (Desc.BindFlags & D3D11_BIND_RENDER_TARGET)
+	{
+		CreateRenderTargetView();
+	}
+
 	if (Desc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
 	{
-		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DSV))
-		{
-			MSGASSERT("깊이버퍼 생성에 실패했습니다..");
-			return;
-		}
+		CreateDepthStencilView();
 	}
 	
 
+}
+
+void UEngineTexture::ResCreate(Microsoft::WRL::ComPtr<ID3D11Texture2D> _Texture2D)
+{
+	Texture2D = _Texture2D;
+	// 크기가 얻어졌습니다.
+	Texture2D->GetDesc(&Desc);
+	Size.X = static_cast<float>(Desc.Width);
+	Size.Y = static_cast<float>(Desc.Height);
+
+	CreateRenderTargetView();
+}
+
+void UEngineTexture::CreateRenderTargetView()
+{
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateRenderTargetView(Texture2D.Get(), nullptr, &RTV))
+	{
+		MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
+	}
+}
+
+void UEngineTexture::CreateShaderResourceView()
+{
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateShaderResourceView(Texture2D.Get(), nullptr, &SRV))
+	{
+		MSGASSERT("깊이버퍼 생성에 실패했습니다..");
+		return;
+	}
+}
+void UEngineTexture::CreateDepthStencilView()
+{
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DSV))
+	{
+		MSGASSERT("깊이버퍼 생성에 실패했습니다..");
+		return;
+	}
 }

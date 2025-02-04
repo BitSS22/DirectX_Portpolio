@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneComponent.h"
+#include <EngineCore/EngineCore.h>
 
 // 기하구조를 이야기해 봅시다.
 // 설명 :
@@ -41,6 +42,8 @@ public:
 			// static_assert
 		}
 
+		size_t Size = sizeof(ComponentType);
+
 		char* ComMemory = new char[sizeof(ComponentType)];
 
 		UActorComponent* ComPtr = reinterpret_cast<ComponentType*>(ComMemory);
@@ -50,6 +53,8 @@ public:
 		// 레벨먼저 세팅하고
 		// 플레이스먼트 new 
 		std::shared_ptr<ComponentType> NewCom(new(ComMemory) ComponentType());
+
+		AllComponentList.push_back(NewCom);
 
 		// 내가 그냥 ActorComponent
 		// 내가 그냥 SceneComponent
@@ -67,6 +72,14 @@ public:
 		return NewCom;
 	}
 
+	template<typename Type>
+	Type* GetGameInstance()
+	{
+		return dynamic_cast<Type*>(GetGameInstance());
+	}
+
+	ENGINEAPI class UGameInstance* GetGameInstance();
+
 	ULevel* GetWorld()
 	{
 		return World;
@@ -80,6 +93,16 @@ public:
 		}
 
 		RootComponent->SetWorldLocation(_Value);
+	}
+
+	void AddActorLocation(const FVector& _Value)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->AddWorldLocation(_Value);
 	}
 
 	void SetActorRelativeScale3D(const FVector& _Scale)
@@ -119,10 +142,15 @@ public:
 			return;
 		}
 
-		RootComponent->AddRotation(_Value);
+		RootComponent->AddWorldRotation(_Value);
 	}
 
-	void AttachToActor(AActor* _Parent);
+	ENGINEAPI void AttachToActor(AActor* _Parent);
+
+	FVector GetActorLocation()
+	{
+		return RootComponent->Transform.WorldLocation;
+	}
 
 	// 트랜스폼 자체를 고칠수는 없다. 복사본을 주는 함수.
 	FTransform GetActorTransform()
@@ -135,19 +163,56 @@ public:
 		return RootComponent->GetTransformRef();
 	}
 
+	void SetActorTransform(const FTransform& _Transform)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->Transform = _Transform;
+
+		return;
+	}
+
 
 	ENGINEAPI FVector GetActorUpVector();
 	ENGINEAPI FVector GetActorRightVector();
 	ENGINEAPI FVector GetActorForwardVector();
 
+	template<typename ComType>
+	std::vector<std::shared_ptr<ComType>> GetComponentByClass()
+	{
+		std::vector<std::shared_ptr<ComType>> Result;
+
+		for (std::shared_ptr<class UActorComponent> Component : AllComponentList)
+		{
+			std::shared_ptr<ComType> Com = std::dynamic_pointer_cast<ComType>(Component);
+			if (nullptr != Com)
+			{
+				Result.push_back(Com);
+			}
+		}
+
+		return Result;
+	}
+
 protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 
 private:
+	// 누구의 자식인지도 알고 
+	AActor* Parent = nullptr;
+	// 자기 자식들도 알게 된다.
+	std::list<std::shared_ptr<AActor>> ChildList;
+
 	// 초기화 하면 안됩니다.
 	// 스폰액터 방식이 변경되었으니까.
 	ULevel* World;
 
 	std::list<std::shared_ptr<class UActorComponent>> ActorComponentList;
+
+	// 레퍼런스 카운트 유지용 자료구조.
+	std::list<std::shared_ptr<class UActorComponent>> AllComponentList;
 };
 

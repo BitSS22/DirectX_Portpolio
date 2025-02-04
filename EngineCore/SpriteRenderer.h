@@ -1,19 +1,8 @@
 #pragma once
 #include "Renderer.h"
 #include <EngineBase/EngineDelegate.h>
+#include "EngineDataStruct.h"
 
-struct FUVValue 
-{
-	float4 PlusUVValue;
-};
-
-
-struct ResultColor 
-{
-public:
-	float4 PlusColor;
-	float4 MulColor;
-};
 
 // Ό³Έν :
 class USpriteRenderer : public URenderer
@@ -80,7 +69,9 @@ public:
 		return Sprite->GetName();
 	}
 
-	ENGINEAPI void SetSprite(std::string_view _Name, size_t _CurIndex = 0);
+	ENGINEAPI void SetSprite(std::string_view _Name, UINT _CurIndex = 0);
+
+	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
 
 	bool IsCurAnimationEnd()
 	{
@@ -107,10 +98,20 @@ public:
 		AutoScaleRatio = _Scale;
 	}
 
+	void BillboardOn()
+	{
+		IsBillboard = true;
+	}
+
+	void BillboardOff()
+	{
+		IsBillboard = false;
+	}
+
 
 	void SetSprite(UEngineSprite* _Sprite);
 
-	ResultColor ColorData;
+	FResultColor ColorData;
 	FUVValue UVValue;
 	FSpriteData SpriteData;
 
@@ -118,16 +119,18 @@ protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;
-
+	ENGINEAPI void CameraTransUpdate(UEngineCamera* _Camera) override;
 
 private:
+	bool IsBillboard = false;
+
 	URenderUnit* MainUnit;
 
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
-
-	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr; 
+	std::map<std::string, FrameAnimation> FrameAnimations;
+
 	UEngineSprite* Sprite = nullptr;
 	bool IsAutoScale = true;
 	float AutoScaleRatio = 1.0f;

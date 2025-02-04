@@ -3,6 +3,7 @@
 #include "Mesh.h"
 #include "EngineMaterial.h"
 #include "EngineEnums.h"
+#include "EngineStruct.h"
 
 // 설명 : 랜더링의 최소단위
 //        Draw를 하는 애는 이녀석을 기반으로 할것이다.
@@ -17,10 +18,12 @@ class URenderUnit
 {
 public:
 	// constrcuter destructer
-	URenderUnit();
-	~URenderUnit();
+	ENGINEAPI URenderUnit();
+	ENGINEAPI ~URenderUnit();
 
-	URenderer* ParentRenderer = nullptr;
+	class UTransformObject* TransformObject = nullptr;
+
+	class URenderer* ParentRenderer = nullptr;
 
 	// 매쉬(육체) 
 	std::shared_ptr<UMesh> Mesh;
@@ -29,6 +32,8 @@ public:
 
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayOut;
 
+	FRenderBaseData Data;
+
 	ENGINEAPI void SetMesh(std::string_view _Name);
 	ENGINEAPI void SetMaterial(std::string_view _Name);
 
@@ -36,6 +41,9 @@ public:
 	//void SetInputAssembler1();
 
 	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
+
+	ENGINEAPI virtual void RenderInst(class UEngineCamera* _Camera, UINT _InstCount, float _DeltaTime);
+
 
 	ENGINEAPI void MaterialResourcesCheck();
 
@@ -47,13 +55,26 @@ public:
 
 	ENGINEAPI void ConstantBufferLinkData(std::string_view Name, void* _Data);
 
+	template<typename Data>
+	ENGINEAPI void StructuredBufferLinkData(std::string_view _Name, std::vector<Data>& _Data)
+	{
+		StructuredBufferLinkData(_Name, static_cast<UINT>(_Data.size()), reinterpret_cast<void*>(&_Data[0]));
+	}
+
+	ENGINEAPI void StructuredBufferLinkData(std::string_view Name, UINT _Count, void* _Data);
+
 	ENGINEAPI void SetTexture(std::string_view _Name, std::string_view _ResName);
+	ENGINEAPI void SetTexture(std::string_view _Name, std::shared_ptr<UEngineTexture> _Texture);
 	ENGINEAPI void SetSampler(std::string_view Name, std::string_view _ResName);
 
-private:
-	// 자신만의 리소스를 가지고 있습니다.
+
+	ENGINEAPI void SetTexture(std::string_view _Name, UEngineTexture* _Texture);
+
+	ENGINEAPI void Reset();
+
 	std::map<EShaderType, UEngineShaderResources> Resources;
 
+private:
 	void InputLayOutCreate();
 };
 

@@ -1,25 +1,22 @@
 #pragma once
-#include <EngineCore/Pawn.h>
 
 // Ό³Έν :
-class APlayer : public APawn
+class Player
 {
 public:
 	// constrcuter destructer
-	APlayer();
-	~APlayer();
+	Player();
+	~Player();
 
 	// delete Function
-	APlayer(const APlayer& _Other) = delete;
-	APlayer(APlayer&& _Other) noexcept = delete;
-	APlayer& operator=(const APlayer& _Other) = delete;
-	APlayer& operator=(APlayer&& _Other) noexcept = delete;
+	Player(const Player& _Other) = delete;
+	Player(Player&& _Other) noexcept = delete;
+	Player& operator=(const Player& _Other) = delete;
+	Player& operator=(Player&& _Other) noexcept = delete;
 
 protected:
 
 private:
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
 
 };
 

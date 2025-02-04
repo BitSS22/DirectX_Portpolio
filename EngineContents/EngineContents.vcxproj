@@ -24,7 +24,6 @@
     <ProjectGuid>{43ad2c85-936d-456e-a1c3-b1fac2ce46be}</ProjectGuid>
     <RootNamespace>EngineContents</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Hexagon</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -172,7 +171,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AMon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsCore.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ContentsEditorGUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GMConst.h" />
+    <ClInclude Include="GMStruct.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="JHJEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LightGameMode.h" />
+    <ClInclude Include="MeshActor.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Monster2.h" />
+    <ClInclude Include="MyCustomRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MyGameInstance.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TestActor.h" />
+    <ClInclude Include="TestGameMode.h" />
+    <ClInclude Include="TitleHUD.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -180,20 +214,54 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PolygonRenderer.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="PlayMode.h">
+    <ClInclude Include="TileMapGameMode.h" />
+    <ClInclude Include="TitleGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Center.h">
+    <ClInclude Include="TitleLogo.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AMon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ContentsCore_Resources.cpp" />
+    <ClCompile Include="ContentsEditorGUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GMStruct.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="JHJEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="LightGameMode.cpp" />
+    <ClCompile Include="MeshActor.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Monster2.cpp" />
+    <ClCompile Include="MyCustomRenderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MyGameInstance.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp" />
+    <ClCompile Include="TestGameMode.cpp" />
+    <ClCompile Include="TitleHUD.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -201,7 +269,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PolygonRenderer.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PreCompile.h</PrecompiledHeaderFile>
@@ -212,15 +279,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="PlayMode.cpp">
+    <ClCompile Include="TileMapGameMode.cpp" />
+    <ClCompile Include="TitleGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Center.cpp">
+    <ClCompile Include="TitleLogo.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

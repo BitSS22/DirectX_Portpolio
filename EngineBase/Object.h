@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
 #include <memory>
+#include "EngineSerializer.h"
 
 // 설명 : std::enable_shared_from_this<UObject>
-class UObject : public std::enable_shared_from_this<UObject>
+class UObject : public std::enable_shared_from_this<UObject>, public ISerializObject
 {
 public:
 	// constrcuter destructer
@@ -36,7 +37,7 @@ public:
 	}
 
 	// 이름 지정할때 뭔가 하고 싶으면 오버라이드해.
-	virtual void SetName(std::string_view _Name)
+	ENGINEAPI virtual void SetName(std::string_view _Name)
 	{
 		Name = _Name.data();
 	}
@@ -128,6 +129,13 @@ public:
 	{
 		Order = _Order;
 	}
+
+	bool& GetIsActiveValueRef()
+	{
+		return IsActiveValue;
+	}
+
+	
 
 protected:
 

@@ -54,11 +54,14 @@ public:
 		LoopActive = false;
 	}
 
+	ENGINEAPI static int GetWheelDir();
+
 	ENGINEAPI static bool IsApplicationOn()
 	{
 		return LoopActive;
 	}
 
+	ENGINEAPI bool IsMouseScreenOut() const;
 
 	ENGINEAPI HWND GetWindowHandle() const
 	{
@@ -67,6 +70,12 @@ public:
 
 	ENGINEAPI static  void SetCustomProc(std::function<bool(HWND, UINT, WPARAM, LPARAM)> _CustomProc);
 
+	ENGINEAPI bool IsFocus()
+	{
+		return IsFocusValue;
+	}
+
+	
 	
 
 protected:
@@ -84,6 +93,10 @@ private:
 	inline static bool LoopActive = true;
 
 	ENGINEAPI static std::map<std::string, WNDCLASSEXA> WindowClasss;
+
+	ENGINEAPI static std::map<HWND, UEngineWindow*> AllWindows;
+
+	bool IsFocusValue = false;
 
 	FVector WindowSize;
 	HWND WindowHandle = nullptr;

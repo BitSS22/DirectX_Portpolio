@@ -9,7 +9,7 @@
 // Ό³Έν :
 class UActorComponent : public UObject
 {
-	friend AActor;
+	friend class AActor;
 
 public:
 	// constrcuter destructer
@@ -22,11 +22,22 @@ public:
 	UActorComponent& operator=(const UActorComponent& _Other) = delete;
 	UActorComponent& operator=(UActorComponent&& _Other) noexcept = delete;
 
-	class AActor* GetActor();
+	template<typename ConvertType>
+	ConvertType* GetActor()
+	{
+		return dynamic_cast<ConvertType*>(GetActor());
+	}
+
+	ENGINEAPI class AActor* GetActor();
 	ENGINEAPI virtual void InitializeComponent() {}
 	ENGINEAPI virtual void BeginPlay() {}
 	ENGINEAPI virtual void ComponentTick(float _DeltaTime) {};
 
+	class ULevel* GetWorld();
+
+	ENGINEAPI bool IsActive() override;
+
+	ENGINEAPI bool IsDestroy() override;
 
 protected:
 

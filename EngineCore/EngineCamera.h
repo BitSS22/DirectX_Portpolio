@@ -14,6 +14,7 @@
 class UEngineCamera : public USceneComponent
 {
 	friend class ULevel;
+	friend class ACameraActor;
 
 public:
 	// constrcuter destructer
@@ -25,6 +26,8 @@ public:
 	UEngineCamera(UEngineCamera&& _Other) noexcept = delete;
 	UEngineCamera& operator=(const UEngineCamera& _Other) = delete;
 	UEngineCamera& operator=(UEngineCamera&& _Other) noexcept = delete;
+
+	ENGINEAPI bool CheckPickCollision(std::string_view _CollisionProfile, std::vector<class UCollision*>& _Collision);
 
 	void BeginPlay() override;
 
@@ -51,8 +54,18 @@ public:
 
 	ENGINEAPI void SetProjectionType(EProjectionType _Type)
 	{
-		Type = _Type;
+		ProjectionType = _Type;
 	}
+
+	ENGINEAPI void SetZSort(int _Order, bool _Value);
+
+	ENGINEAPI void Release(float _DeltaTime);
+
+	UEngineRenderTarget* GetCameraTarget()
+	{
+		return CameraTarget.get();
+	}
+
 
 protected:
 
@@ -63,7 +76,7 @@ private:
 
 	float FOV = 60.0f;
 
-	EProjectionType Type = EProjectionType::Orthographic;
+	EProjectionType ProjectionType = EProjectionType::Orthographic;
 
 	D3D11_VIEWPORT ViewPortInfo;
 
@@ -73,6 +86,11 @@ private:
 
 	// 내가 바라보는 랜더러의 그룹은 카메라가 가진다.
 	std::map<int, std::list<std::shared_ptr<class URenderer>>> Renderers;
+	std::map<int, bool> RendererZSort;
+
+	std::shared_ptr<class UEngineRenderTarget> CameraTarget;
+
+
 
 	void ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer);
 };

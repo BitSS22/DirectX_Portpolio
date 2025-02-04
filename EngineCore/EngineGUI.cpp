@@ -53,6 +53,21 @@ void UEngineGUI::Init()
     ImGui_ImplWin32_Init(UEngineCore::GetMainWindow().GetWindowHandle());
     ImGui_ImplDX11_Init(UEngineCore::GetDevice().GetDevice(), UEngineCore::GetDevice().GetContext());
 
+    // 한글을 사용할수 없는 폰트라 직접 처리한다.
+
+    UEngineDirectory NewDir;
+    NewDir.MoveParentToDirectory("EngineResources");
+    NewDir.Move("Font");
+    UEngineFile File = NewDir.GetFile("malgun.ttf");
+
+    File.GetPathToString();
+    std::string UTF8Path = UEngineString::AnsiToUTF8(File.GetPathToString());
+
+    io.Fonts->AddFontFromFileTTF(UTF8Path.c_str(), 18.0f, nullptr, io.Fonts->GetGlyphRangesKorean());
+
+    
+
+
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
     // - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
@@ -77,7 +92,7 @@ void UEngineGUI::Init()
                 return true;
             }
 
-            return true;
+            return false;
         }
     );
 }
@@ -120,12 +135,48 @@ void UEngineGUI::PushGUIWindow(std::shared_ptr<class UEngineGUIWindow> _Window)
     Windows.insert({ _Window->GetName(), _Window });
 }
 
-void UEngineGUI::GUIRender()
+std::shared_ptr<UEngineGUIWindow> UEngineGUI::FindGUIWindow(std::string_view _Text)
+{
+    std::string UpperName = UEngineString::ToUpper(_Text);
+
+    if (false == Windows.contains(UpperName))
+    {
+        return nullptr;
+    }
+
+    return Windows[UpperName];
+}
+
+void UEngineGUI::AllWindowOn()
+{
+    for (std::pair<const std::string, std::shared_ptr<UEngineGUIWindow>>& Window : Windows)
+    {
+        Window.second->SetActive(true);
+    }
+}
+
+void UEngineGUI::AllWindowOff()
+{
+    for (std::pair<const std::string, std::shared_ptr<UEngineGUIWindow>>& Window : Windows)
+    {
+        Window.second->SetActive(false);
+    }
+}
+
+void UEngineGUI::GUIRender(ULevel* _Level)
 {
     UEngineGUI::GUIRenderStart();
-    for (std::pair<const std::string, std::shared_ptr<class UEngineGUIWindow>>& Window : Windows)
+    for (std::pair<const std::string, std::shared_ptr<UEngineGUIWindow>>& Window : Windows)
     {
-        ImGui::Begin(Window.first.c_str());
+        if (false == Window.second->IsActive())
+        {
+            continue;
+        }
+
+        bool* ActivePtr = &Window.second->GetIsActiveValueRef();
+        bool Result = ImGui::Begin(Window.first.c_str(), ActivePtr);
+
+        Window.second->World = _Level;
         Window.second->OnGUI();
         ImGui::End();
     }

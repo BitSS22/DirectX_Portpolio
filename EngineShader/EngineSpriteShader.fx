@@ -1,3 +1,5 @@
+#include "Transform.hlsli"
+
 struct EngineVertex
 {
 	float4 POSITION : POSITION;
@@ -16,42 +18,6 @@ struct VertexShaderOutPut
 	float4 COLOR : COLOR;
 };
 
-// 상수버퍼를 사용하겠다.
-cbuffer FTransform : register(b0)
-{
-	// transformupdate는 
-	// 아래의 값들을 다 적용해서
-	// WVP를 만들어내는 함수이다.
-	// 변환용 벨류
-	float4 Scale;
-	float4 Rotation;
-	float4 Qut;
-	float4 Location;
-
-	// 릴리에티브 로컬
-	float4 RelativeScale;
-	float4 RelativeRotation;
-	float4 RelativeQut;
-	float4 RelativeLocation;
-
-	// 월드
-	float4 WorldScale;
-	float4 WorldRotation;
-	float4 WorldQuat;
-	float4 WorldLocation;
-
-	float4x4 ScaleMat;
-	float4x4 RotationMat;
-	float4x4 LocationMat;
-	float4x4 RevolveMat;
-	float4x4 ParentMat;
-	float4x4 LocalWorld;
-	float4x4 World;
-	float4x4 View;
-	float4x4 Projection;
-	float4x4 WVP;
-};
-
 // 상수버퍼는 아무것도 세팅해주지 않으면 기본값이 0으로 채워집니다.
 cbuffer FSpriteData : register(b1)
 {
@@ -66,7 +32,7 @@ cbuffer FUVValue : register(b2)
 };
 
 // 버텍스쉐이더를 다 만들었다.
-VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
+VertexShaderOutPut SpriteRender_VS(EngineVertex _Vertex)
 {
 	// CPU에서 계산한 값을 쉐이더에게 넘기는 방법을 알아야 하는데
 	// 상수버퍼라고 부릅니다.
@@ -79,6 +45,8 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 	
 	_Vertex.POSITION.x += (1.0f - Pivot.x) - 0.5f;
 	_Vertex.POSITION.y += (1.0f - Pivot.y) - 0.5f;
+	
+	_Vertex.POSITION.w = 1.0f;
 	
 	OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
 	
@@ -93,20 +61,6 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 }
 
 
-struct OutTargetColor
-{
-	float4 Target0 : SV_Target0; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target1 : SV_Target1; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target2 : SV_Target2; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target3 : SV_Target3; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target4 : SV_Target4; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target5 : SV_Target5; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target6 : SV_Target6; // 뷰포트행렬이 곱해지는 포지션입니다.
-	float4 Target7 : SV_Target7; // 뷰포트행렬이 곱해지는 포지션입니다.
-};
-
-
-// 텍스처 1장과 
 Texture2D ImageTexture : register(t0);
 // 샘플러 1개가 필요합니다.
 SamplerState ImageSampler : register(s0);
@@ -121,10 +75,17 @@ cbuffer ResultColor : register(b0)
 };
 
 // 이미지를 샘플링해서 이미지를 보이게 만들고
-float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
+float4 SpriteRender_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	
 	float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+	
+	if (0.0f >= Color.a)
+	{
+		// 픽셀쉐이더에서 아웃풋 머저로 넘기지 않는다.
+		clip(-1);
+	}
+	
 	Color += PlusColor;
 	Color *= MulColor;
 	return Color;
