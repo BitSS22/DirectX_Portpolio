@@ -94,7 +94,7 @@ void ATitleGameMode::BeginPlay()
 
 		// 포스트 이펙트 켜고 끄기.
 		std::shared_ptr<UPostEffect> Effect = LastTarget->GetPostEffect(0);
-		Effect->IsActive = false;
+		Effect->IsActive = true;
 	}
 
 }
@@ -124,7 +124,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 
 		// 포스트 이펙트 켜고 끄기.
 		std::shared_ptr<UPostEffect> Effect = LastTarget->GetPostEffect(0);
-		Effect->IsActive = true;
+		Effect->IsActive = !Effect->IsActive;
 	}
 
 

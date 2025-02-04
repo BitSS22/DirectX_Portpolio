@@ -50,7 +50,7 @@ float4 JHJEffect_PS(VertexShaderOutPut _Vertex) : SV_Target0
                 
                 if (xyColor.a >= 0.9f)
                 {
-                    Color = float4(1.f, 0.f, 0.f, 1.f);
+                    Color = float4(1.0f, 0.f, 0.f, 1.f);
                     break;
                 }
             }
